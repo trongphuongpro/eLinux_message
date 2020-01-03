@@ -10,9 +10,9 @@ set(CMAKE_C_COMPILER arm-linux-gcc)
 
 add_subdirectory()
 
-set(TARGET **target filename**)
+set(TARGET message)
 
-add_executable(${TARGET} **source files**)
+add_executable(${TARGET} )
 add_library(${TARGET} STATIC **source files**)
 target_link_libraries(${TARGET} **lib**)
 target_include_directories(${TARGET} PUBLIC **dirs**)

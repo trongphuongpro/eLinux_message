@@ -8,14 +8,13 @@ set(CMAKE_CXX_COMPILER arm-linux-g++)
 set(CMAKE_C_COMPILER arm-linux-gcc)
 #-----------------------------------------------------------------------------#
 
-add_subdirectory()
+add_subdirectory(/home/trongphuong/Work/BBB/libraries/uart uart)
 
-set(TARGET **target filename**)
+set(TARGET testbench)
 
-add_executable(${TARGET} **source files**)
-add_library(${TARGET} STATIC **source files**)
-target_link_libraries(${TARGET} **lib**)
-target_include_directories(${TARGET} PUBLIC **dirs**)
+add_executable(${TARGET} test.cpp ../src/message.cpp)
+target_link_libraries(${TARGET} uart ${CMAKE_SOURCE_DIR}/../lib/libcrc32.a)
+target_include_directories(${TARGET} PUBLIC ../include)
 
 #-----------------------------------------------------------------------------#
 target_compile_options(${TARGET} PUBLIC -std=gnu++11

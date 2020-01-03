@@ -15,6 +15,7 @@
 #define __MESSAGE__
 
 #include "crc32.h"
+#include "uart.h"
 
 /** 
  * @brief massage preamble size
@@ -37,7 +38,7 @@ namespace eLinux {
 /**
  * @brief class Message used for transmitting/receiving message packet
  */
-class Message {
+class Message: public BBB::UART {
 public:
 
 	/** 
@@ -53,10 +54,12 @@ public:
 
 
 	/**
-	 * Constructor
-	 * @param [in] obj instance of physical communication class
+	 * @brief Constructor
+	 * @param bus UART bus number;
+	 * @param baudrate UART baudrate;
+	 * @param bit data size: 5,6,7 or 8 bit
 	 */
-	Message(void *obj);
+	Message(BBB::UART::PORT port, int baudrate, uint8_t datasize);
 
 	/**
 	 * Destructor
@@ -76,10 +79,10 @@ public:
 	 * @return nothing.
 	 */
 	void send(const void* preamble,
-		uint8_t destination, 
-		uint8_t source, 
-		const void* payload, 
-		uint8_t len);
+				uint8_t destination, 
+				uint8_t source, 
+				const void* payload, 
+				uint8_t len);
 
 
 	/** 
@@ -88,6 +91,7 @@ public:
 	 */
 	int verifyChecksum();
 
+	void setPreamble(void* preamble, uint8_t size);
 
 	uint8_t preamble[MESSAGE_PREAMBLE_SIZE]; /**< @brief preamble of message packet */
 	uint8_t address[2]; /**< @brief destination and source address: 2 bytes */
@@ -97,6 +101,11 @@ public:
 
 private:
 
+	void createPacket(const void* preamble,
+						uint8_t destination, 
+						uint8_t source, 
+						const void* payload, 
+						uint8_t len);
 
 };
 
