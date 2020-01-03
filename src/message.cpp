@@ -45,7 +45,16 @@ void Message::send(const void* preamble,
 	write(payloadSize);
 	writeBuffer(payload, payloadSize);
 	writeBuffer(&checksum, sizeof(crc32_t));
-	sleep(1);
+
+	usleep(500000); /**< pause minimum 500ms between packets */
+}
+
+
+void Message::setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4) {
+	this->validPreamble[0] = b1;
+	this->validPreamble[1] = b2;
+	this->validPreamble[2] = b3;
+	this->validPreamble[3] = b4;
 }
 
 
@@ -80,9 +89,7 @@ void Message::createPacket(const void* _preamble,
 
 
 	// CHECKSUM CRC32
-	crc32_t checksum = crc32_compute(this->payload, this->payloadSize);
-
-	this->checksum = checksum;
+	this->checksum = crc32_compute(this->payload, this->payloadSize);
 }
 
 }

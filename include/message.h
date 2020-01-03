@@ -91,7 +91,9 @@ public:
 	 */
 	int verifyChecksum();
 
-	void setPreamble(void* preamble, uint8_t size);
+
+
+	void setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4);
 
 	uint8_t preamble[MESSAGE_PREAMBLE_SIZE]; /**< @brief preamble of message packet */
 	uint8_t address[2]; /**< @brief destination and source address: 2 bytes */
@@ -106,6 +108,8 @@ private:
 						uint8_t source, 
 						const void* payload, 
 						uint8_t len);
+
+	uint8_t validPreamble[MESSAGE_PREAMBLE_SIZE] = {0xAA, 0xBB, 0xCC, 0xDD};
 
 };
 
