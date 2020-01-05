@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7emessage_29',['~Message',['../classeLinux_1_1Message.html#ad522e5fa7e91adb0303e79c60dea7c08',1,'eLinux::Message']]]
+  ['send_45',['send',['../classeLinux_1_1Message.html#ad5651f5eeecc2a5bb6e80ba74667fb83',1,'eLinux::Message']]],
+  ['setpreamble_46',['setPreamble',['../classeLinux_1_1Message.html#aa775627c0f0d7a3c1e95ccbae4f86d05',1,'eLinux::Message']]]
 ];

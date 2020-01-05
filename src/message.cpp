@@ -10,7 +10,7 @@
  */
 
 
-#include <istream>
+#include <stdio.h>
 #include <unistd.h>
 #include "message.h"
 
@@ -24,7 +24,16 @@ namespace eLinux {
 Message::Message(UART::PORT port, int baudrate, uint8_t datasize)
 	: UART(port, baudrate, datasize) {
 
+	this->callback[0] = parsePreamble;
+	this->callback[1] = parseAddress;
+	this->callback[2] = parseSize;
+	this->callback[3] = parsePayload;
+	this->callback[4] = parseChecksum;
+
+	this->currentStep = parsingPreamble;
+
 	crc32_init();
+	onReceiveData(ISR);
 }
 
 
@@ -40,11 +49,12 @@ void Message::send(const void* preamble,
 					uint8_t len)
 {
 	createPacket(preamble, destination, source, payload, len);
-	writeBuffer(preamble, MESSAGE_PREAMBLE_SIZE);
-	writeBuffer(address, 2);
-	write(payloadSize);
-	writeBuffer(payload, payloadSize);
-	writeBuffer(&checksum, sizeof(crc32_t));
+
+	writeBuffer(this->txPacket.preamble, MESSAGE_PREAMBLE_SIZE);
+	writeBuffer(this->txPacket.address, 2);
+	write(this->txPacket.payloadSize);
+	writeBuffer(this->txPacket.payload, this->txPacket.payloadSize);
+	writeBuffer(&(this->txPacket.checksum), sizeof(crc32_t));
 
 	usleep(500000); /**< pause minimum 500ms between packets */
 }
@@ -69,27 +79,144 @@ void Message::createPacket(const void* _preamble,
 
 	// PREAMBLE
 	for (uint8_t i = 0; i < MESSAGE_PREAMBLE_SIZE; i++) {
-		this->preamble[i] = preamble[i];
+		this->txPacket.preamble[i] = preamble[i];
 	}
 
 
 	// ADDRESS
-	this->address[0] = destination;
-	this->address[1] = source;
+	this->txPacket.address[0] = destination;
+	this->txPacket.address[1] = source;
 
 
 	// PAYLOAD SIZE
-	this->payloadSize = (len > MESSAGE_MAX_PAYLOAD_SIZE) ? MESSAGE_MAX_PAYLOAD_SIZE : len;
+	this->txPacket.payloadSize = (len > MESSAGE_MAX_PAYLOAD_SIZE) ? 
+									MESSAGE_MAX_PAYLOAD_SIZE : len;
 
 
 	// PAYLOAD 
-	for (uint8_t i = 0; i < this->payloadSize; i++) {
-		this->payload[i] = payload[i];
+	for (uint8_t i = 0; i < this->txPacket.payloadSize; i++) {
+		this->txPacket.payload[i] = payload[i];
 	}
 
 
 	// CHECKSUM CRC32
-	this->checksum = crc32_compute(this->payload, this->payloadSize);
+	this->txPacket.checksum = crc32_compute(this->txPacket.payload, this->txPacket.payloadSize);
 }
 
+
+void Message::parsePreamble(void *packet) {
+	
+	Message* rxMessage = static_cast<Message*>(packet);
+
+	if (rxMessage->currentStep == parsingPreamble) {
+		static int counter;
+
+		rxMessage->rxPacket.preamble[counter] = rxMessage->read();
+
+		if (rxMessage->rxPacket.preamble[counter] == rxMessage->validPreamble[counter]) {
+			counter++;
+		}
+		else {
+			counter = 0;
+		}
+
+		// go to next currentStep if 4-byte preamble is read.
+		if (counter == MESSAGE_PREAMBLE_SIZE) {
+			counter = 0;
+			rxMessage->currentStep = parsingAddress;
+		}
+	}
 }
+
+
+void Message::parseAddress(void *packet) {
+	
+
+	Message* rxMessage = static_cast<Message*>(packet);
+
+	if (rxMessage->currentStep == parsingAddress) {
+		static int counter;
+
+		rxMessage->rxPacket.address[counter++] = rxMessage->read();
+
+		// go to next currentStep if 2-byte address is read.
+		if (counter == 2) {
+			counter = 0;
+			rxMessage->currentStep = parsingSize;
+		}
+	}
+}
+
+
+void Message::parseSize(void *packet) {
+	
+	Message* rxMessage = static_cast<Message*>(packet);
+
+	if (rxMessage->currentStep == parsingSize) {
+		rxMessage->rxPacket.payloadSize = rxMessage->read();
+		rxMessage->currentStep = parsingPayload;
+	}
+}
+
+
+void Message::parsePayload(void *packet) {
+	
+	Message* rxMessage = static_cast<Message*>(packet);
+
+	if (rxMessage->currentStep == parsingPayload) {
+		static int counter;
+
+		rxMessage->rxPacket.payload[counter++] = rxMessage->read();
+
+		if (counter == rxMessage->rxPacket.payloadSize || counter == MESSAGE_MAX_PAYLOAD_SIZE) {
+			counter = 0;
+			rxMessage->currentStep = parsingChecksum;
+		}
+	}
+}
+
+
+void Message::parseChecksum(void *packet) {
+	
+	Message* rxMessage = static_cast<Message*>(packet);
+
+	if (rxMessage->currentStep == parsingChecksum) {
+		static int counter;
+
+		*((uint8_t*)(&(rxMessage->rxPacket.checksum))+counter) = rxMessage->read();
+		counter++;
+
+		if (counter == sizeof(crc32_t)) {
+			counter = 0;
+			rxMessage->currentStep = finish;
+		}
+	}
+}
+
+
+int Message::verifyChecksum() {
+	if (this->currentStep == finish) {
+		crc32_t ret = crc32_compute(&rxPacket, sizeof(rxPacket.preamble) 
+											+ sizeof(rxPacket.address) 
+											+ sizeof(rxPacket.payloadSize)
+											+ rxPacket.payloadSize);
+
+		if (ret == this->rxPacket.checksum) {
+			return 0;
+		}
+		else {
+			return -1;
+		}
+	}
+	return -1;
+}
+
+
+void ISR(void* arg) {
+	Message *msg = static_cast<Message*>(arg);
+
+	if (msg->currentStep < Message::finish) {
+		msg->callback[msg->currentStep](msg);
+	}
+}
+} /* namespace eLinux */

@@ -35,6 +35,7 @@
 namespace eLinux {
 
 
+typedef void (*CallbackType)(void*);
 /**
  * @brief class Message used for transmitting/receiving message packet
  */
@@ -50,7 +51,20 @@ public:
 				parsingPayload, /**< step 4: receive payload */
 				parsingChecksum, /**< step 5: receive CRC-32 checksum */
 				finish /**< step 6: finish receiving prodedure */
-			} currentStep; /**< @brief variable contains current state of procedure */;
+			} currentStep; /**< @brief variable contains current state of procedure */
+
+
+	/** 
+	 * @brief Struct containing message packet
+	 */
+	struct MessagePacket {
+		uint8_t preamble[MESSAGE_PREAMBLE_SIZE]; /**< @brief preamble of message packet */
+		uint8_t address[2]; /**< @brief destination and source address: 2 bytes */
+		uint8_t payloadSize; /**< @brief size of payload  */
+		uint8_t payload[MESSAGE_MAX_PAYLOAD_SIZE]; /**< @brief array contains payload */
+		crc32_t checksum; /**< @brief CRC-32 checksum */
+	}	rxPacket, /**< @brief packet for incoming message */
+		txPacket; /**< @brief packet for outgoing message */
 
 
 	/**
@@ -62,7 +76,7 @@ public:
 	Message(BBB::UART::PORT port, int baudrate, uint8_t datasize);
 
 	/**
-	 * Destructor
+	 * @brief Destructor
 	 */
 	~Message();
 
@@ -92,14 +106,17 @@ public:
 	int verifyChecksum();
 
 
-
+	/** 
+	 * @brief Set valid preamble (4 bytes) for incoming packet
+	 *
+	 * @param b1 first byte.
+	 * @param b2 second byte.
+	 * @param b3 third byte.
+	 * @param b4 last byte.
+	 * @return nothing.
+	 */
 	void setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4);
 
-	uint8_t preamble[MESSAGE_PREAMBLE_SIZE]; /**< @brief preamble of message packet */
-	uint8_t address[2]; /**< @brief destination and source address: 2 bytes */
-	uint8_t payloadSize; /**< @brief size of payload  */
-	uint8_t payload[MESSAGE_MAX_PAYLOAD_SIZE]; /**< @brief array contains payload */
-	crc32_t checksum; /**< @brief CRC-32 checksum */
 
 private:
 
@@ -109,9 +126,21 @@ private:
 						const void* payload, 
 						uint8_t len);
 
+	static void parsePreamble(void *);
+	static void parseAddress(void *);
+	static void parseSize(void *);
+	static void parsePayload(void *);
+	static void parseChecksum(void *);
+
 	uint8_t validPreamble[MESSAGE_PREAMBLE_SIZE] = {0xAA, 0xBB, 0xCC, 0xDD};
 
+	CallbackType callback[5];
+
+	friend void ISR(void *arg);
+
 };
+
+void ISR(void* arg);
 
 } /* namespace eLinux */
 

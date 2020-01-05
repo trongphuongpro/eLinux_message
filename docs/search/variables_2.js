@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['payload_33',['payload',['../classeLinux_1_1Message.html#a6f04c7007a8fe5b37a6a72c2d8bc5e35',1,'eLinux::Message']]],
-  ['payloadsize_34',['payloadSize',['../classeLinux_1_1Message.html#a4bba2912ad8b13941de744e6232f7c69',1,'eLinux::Message']]],
-  ['preamble_35',['preamble',['../classeLinux_1_1Message.html#a77ba8aab57853a5468d47e7077a71860',1,'eLinux::Message']]]
+  ['payload_52',['payload',['../structeLinux_1_1Message_1_1MessagePacket.html#a1846130ba2601fc58f77c918cceb90c9',1,'eLinux::Message::MessagePacket']]],
+  ['payloadsize_53',['payloadSize',['../structeLinux_1_1Message_1_1MessagePacket.html#adc18e2e1fa04c1fa6c95e07d84c08ba3',1,'eLinux::Message::MessagePacket']]],
+  ['preamble_54',['preamble',['../structeLinux_1_1Message_1_1MessagePacket.html#a1e75904c3c40d4e36c00a0b42d5ac3ae',1,'eLinux::Message::MessagePacket']]]
 ];

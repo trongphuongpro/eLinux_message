@@ -66,6 +66,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Data Fields</a>  </div>
@@ -78,7 +79,19 @@ $(function() {
  <a href="classeLinux_1_1Message.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="message_8h_source.html">message.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for eLinux::Message:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classeLinux_1_1Message.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">MessagePacket</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct containing message packet.  <a href="structeLinux_1_1Message_1_1MessagePacket.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:ac1c04e68edc1b010d7b3bf73b4e466e7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7">steps</a> { <br />
@@ -96,16 +109,20 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a55bbe4ca5db25a44fd2ea51b0e5aaf8c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a55bbe4ca5db25a44fd2ea51b0e5aaf8c">Message</a> (void *obj)</td></tr>
-<tr class="separator:a55bbe4ca5db25a44fd2ea51b0e5aaf8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5db629a9dbc2934239469af69098de8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ac5db629a9dbc2934239469af69098de8">Message</a> (BBB::UART::PORT port, int baudrate, uint8_t datasize)</td></tr>
+<tr class="memdesc:ac5db629a9dbc2934239469af69098de8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="classeLinux_1_1Message.html#ac5db629a9dbc2934239469af69098de8">More...</a><br /></td></tr>
+<tr class="separator:ac5db629a9dbc2934239469af69098de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad522e5fa7e91adb0303e79c60dea7c08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ad522e5fa7e91adb0303e79c60dea7c08">~Message</a> ()</td></tr>
 <tr class="separator:ad522e5fa7e91adb0303e79c60dea7c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ad5651f5eeecc2a5bb6e80ba74667fb83">send</a> (const void *<a class="el" href="classeLinux_1_1Message.html#a77ba8aab57853a5468d47e7077a71860">preamble</a>, uint8_t destination, uint8_t source, const void *<a class="el" href="classeLinux_1_1Message.html#a6f04c7007a8fe5b37a6a72c2d8bc5e35">payload</a>, uint8_t len)</td></tr>
+<tr class="memitem:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ad5651f5eeecc2a5bb6e80ba74667fb83">send</a> (const void *preamble, uint8_t destination, uint8_t source, const void *payload, uint8_t len)</td></tr>
 <tr class="memdesc:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send message packet.  <a href="classeLinux_1_1Message.html#ad5651f5eeecc2a5bb6e80ba74667fb83">More...</a><br /></td></tr>
 <tr class="separator:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07bddf8959389da3f225d2bcb9755157"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a07bddf8959389da3f225d2bcb9755157">verifyChecksum</a> ()</td></tr>
 <tr class="memdesc:a07bddf8959389da3f225d2bcb9755157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the integrity of the data.  <a href="classeLinux_1_1Message.html#a07bddf8959389da3f225d2bcb9755157">More...</a><br /></td></tr>
 <tr class="separator:a07bddf8959389da3f225d2bcb9755157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa775627c0f0d7a3c1e95ccbae4f86d05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#aa775627c0f0d7a3c1e95ccbae4f86d05">setPreamble</a> (uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)</td></tr>
+<tr class="memdesc:aa775627c0f0d7a3c1e95ccbae4f86d05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set valid preamble (4 bytes) for incoming packet.  <a href="classeLinux_1_1Message.html#aa775627c0f0d7a3c1e95ccbae4f86d05">More...</a><br /></td></tr>
+<tr class="separator:aa775627c0f0d7a3c1e95ccbae4f86d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -113,27 +130,14 @@ Data Fields</h2></td></tr>
 enum <a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7">eLinux::Message::steps</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a1b80e1ac9b4377d3e9d4d2efe040faeb">currentStep</a></td></tr>
 <tr class="memdesc:a1b80e1ac9b4377d3e9d4d2efe040faeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">variable contains current state of procedure <br /></td></tr>
 <tr class="separator:a1b80e1ac9b4377d3e9d4d2efe040faeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77ba8aab57853a5468d47e7077a71860"><td class="memItemLeft" align="right" valign="top"><a id="a77ba8aab57853a5468d47e7077a71860"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a77ba8aab57853a5468d47e7077a71860">preamble</a> [<a class="el" href="message_8h.html#a98382c952465707b612c0367a9645ea4">MESSAGE_PREAMBLE_SIZE</a>]</td></tr>
-<tr class="memdesc:a77ba8aab57853a5468d47e7077a71860"><td class="mdescLeft">&#160;</td><td class="mdescRight">preamble of message packet <br /></td></tr>
-<tr class="separator:a77ba8aab57853a5468d47e7077a71860"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1961c45ab70b2735779dc4673f4681c"><td class="memItemLeft" align="right" valign="top"><a id="aa1961c45ab70b2735779dc4673f4681c"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#aa1961c45ab70b2735779dc4673f4681c">address</a> [2]</td></tr>
-<tr class="memdesc:aa1961c45ab70b2735779dc4673f4681c"><td class="mdescLeft">&#160;</td><td class="mdescRight">destination and source address: 2 bytes <br /></td></tr>
-<tr class="separator:aa1961c45ab70b2735779dc4673f4681c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bba2912ad8b13941de744e6232f7c69"><td class="memItemLeft" align="right" valign="top"><a id="a4bba2912ad8b13941de744e6232f7c69"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a4bba2912ad8b13941de744e6232f7c69">payloadSize</a></td></tr>
-<tr class="memdesc:a4bba2912ad8b13941de744e6232f7c69"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of payload <br  />
- <br /></td></tr>
-<tr class="separator:a4bba2912ad8b13941de744e6232f7c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f04c7007a8fe5b37a6a72c2d8bc5e35"><td class="memItemLeft" align="right" valign="top"><a id="a6f04c7007a8fe5b37a6a72c2d8bc5e35"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a6f04c7007a8fe5b37a6a72c2d8bc5e35">payload</a> [<a class="el" href="message_8h.html#ab780b9319a3053847d1728617ffeeabb">MESSAGE_MAX_PAYLOAD_SIZE</a>]</td></tr>
-<tr class="memdesc:a6f04c7007a8fe5b37a6a72c2d8bc5e35"><td class="mdescLeft">&#160;</td><td class="mdescRight">array contains payload <br /></td></tr>
-<tr class="separator:a6f04c7007a8fe5b37a6a72c2d8bc5e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5756060b98e640dc239c4ee6ffa19dca"><td class="memItemLeft" align="right" valign="top"><a id="a5756060b98e640dc239c4ee6ffa19dca"></a>
-crc32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a5756060b98e640dc239c4ee6ffa19dca">checksum</a></td></tr>
-<tr class="memdesc:a5756060b98e640dc239c4ee6ffa19dca"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRC-32 checksum. <br /></td></tr>
-<tr class="separator:a5756060b98e640dc239c4ee6ffa19dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40486b0aa5ae27320ce981519d9e403f"><td class="memItemLeft" align="right" valign="top"><a id="a40486b0aa5ae27320ce981519d9e403f"></a>
+struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux::Message::MessagePacket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a40486b0aa5ae27320ce981519d9e403f">rxPacket</a></td></tr>
+<tr class="memdesc:a40486b0aa5ae27320ce981519d9e403f"><td class="mdescLeft">&#160;</td><td class="mdescRight">packet for incoming message <br /></td></tr>
+<tr class="separator:a40486b0aa5ae27320ce981519d9e403f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7409f2fde9e9e1da7edd5e7330b708ca"><td class="memItemLeft" align="right" valign="top"><a id="a7409f2fde9e9e1da7edd5e7330b708ca"></a>
+struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux::Message::MessagePacket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a7409f2fde9e9e1da7edd5e7330b708ca">txPacket</a></td></tr>
+<tr class="memdesc:a7409f2fde9e9e1da7edd5e7330b708ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">packet for outgoing message <br /></td></tr>
+<tr class="separator:a7409f2fde9e9e1da7edd5e7330b708ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>class <a class="el" href="classeLinux_1_1Message.html" title="class Message used for transmitting/receiving message packet">Message</a> used for transmitting/receiving message packet </p>
@@ -169,8 +173,8 @@ crc32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a55bbe4ca5db25a44fd2ea51b0e5aaf8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55bbe4ca5db25a44fd2ea51b0e5aaf8c">&#9670;&nbsp;</a></span>Message()</h2>
+<a id="ac5db629a9dbc2934239469af69098de8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5db629a9dbc2934239469af69098de8">&#9670;&nbsp;</a></span>Message()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,15 +182,35 @@ crc32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="memname">eLinux::Message::Message </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td class="paramtype">BBB::UART::PORT&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>baudrate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>datasize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">obj</td><td>instance of physical communication class </td></tr>
+    <tr><td class="paramname">bus</td><td>UART bus number; </td></tr>
+    <tr><td class="paramname">baudrate</td><td>UART baudrate; </td></tr>
+    <tr><td class="paramname">bit</td><td>data size: 5,6,7 or 8 bit </td></tr>
   </table>
   </dd>
 </dl>
@@ -268,6 +292,59 @@ crc32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>nothing. </dd></dl>
+<p>&lt; pause minimum 500ms between packets</p>
+
+</div>
+</div>
+<a id="aa775627c0f0d7a3c1e95ccbae4f86d05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa775627c0f0d7a3c1e95ccbae4f86d05">&#9670;&nbsp;</a></span>setPreamble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void eLinux::Message::setPreamble </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>b1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>b2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>b3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>b4</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set valid preamble (4 bytes) for incoming packet. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b1</td><td>first byte. </td></tr>
+    <tr><td class="paramname">b2</td><td>second byte. </td></tr>
+    <tr><td class="paramname">b3</td><td>third byte. </td></tr>
+    <tr><td class="paramname">b4</td><td>last byte. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>nothing. </dd></dl>
 
 </div>
 </div>
@@ -291,8 +368,9 @@ crc32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/trongphuong/Work/BBB/libraries/message/include/<a class="el" href="message_8h_source.html">message.h</a></li>
+<li>/home/trongphuong/Work/BBB/libraries/message/src/<a class="el" href="message_8cpp.html">message.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

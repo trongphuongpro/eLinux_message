@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['address_30',['address',['../classeLinux_1_1Message.html#aa1961c45ab70b2735779dc4673f4681c',1,'eLinux::Message']]]
+  ['address_49',['address',['../structeLinux_1_1Message_1_1MessagePacket.html#a65124cfa61d1973f465d027753f1d247',1,'eLinux::Message::MessagePacket']]]
 ];
