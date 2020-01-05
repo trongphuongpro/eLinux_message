@@ -188,6 +188,8 @@ void Message::parseChecksum(void *packet) {
 
 		if (counter == sizeof(crc32_t)) {
 			counter = 0;
+
+			rxMessage->rxPacket.error = rxMessage->verifyChecksum();
 			rxMessage->currentStep = finish;
 		}
 	}
@@ -195,20 +197,17 @@ void Message::parseChecksum(void *packet) {
 
 
 int Message::verifyChecksum() {
-	if (this->currentStep == finish) {
-		crc32_t ret = crc32_compute(&rxPacket, sizeof(rxPacket.preamble) 
-											+ sizeof(rxPacket.address) 
-											+ sizeof(rxPacket.payloadSize)
-											+ rxPacket.payloadSize);
+	crc32_t ret = crc32_compute(&rxPacket, sizeof(rxPacket.preamble) 
+										+ sizeof(rxPacket.address) 
+										+ sizeof(rxPacket.payloadSize)
+										+ rxPacket.payloadSize);
 
-		if (ret == this->rxPacket.checksum) {
-			return 0;
-		}
-		else {
-			return -1;
-		}
+	if (ret == this->rxPacket.checksum) {
+		return 0;
 	}
-	return -1;
+	else {
+		return -1;
+	}
 }
 
 

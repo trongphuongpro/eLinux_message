@@ -63,6 +63,7 @@ public:
 		uint8_t payloadSize; /**< @brief size of payload  */
 		uint8_t payload[MESSAGE_MAX_PAYLOAD_SIZE]; /**< @brief array contains payload */
 		crc32_t checksum; /**< @brief CRC-32 checksum */
+		uint8_t error;
 	}	rxPacket, /**< @brief packet for incoming message */
 		txPacket; /**< @brief packet for outgoing message */
 
@@ -100,13 +101,6 @@ public:
 
 
 	/** 
-	 * @brief Check the integrity of the data
-	 * @return 0: OK, -1: Error
-	 */
-	int verifyChecksum();
-
-
-	/** 
 	 * @brief Set valid preamble (4 bytes) for incoming packet
 	 *
 	 * @param b1 first byte.
@@ -125,6 +119,13 @@ private:
 						uint8_t source, 
 						const void* payload, 
 						uint8_t len);
+
+	/** 
+	 * @brief Check the integrity of the data
+	 * @return 0: OK, -1: Error
+	 */
+	int verifyChecksum();
+	
 
 	static void parsePreamble(void *);
 	static void parseAddress(void *);

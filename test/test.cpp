@@ -39,8 +39,6 @@ int main() {
 	Message msg(UART::UART1, 9600, 8);
 
 	while (1) {
-		//printf("step: %d\n", msg.currentStep);
-
 		if (msg.currentStep == Message::finish) {
 			printf("[Preamble] ");
 			for (int i = 0; i < 4; i++) {
@@ -58,12 +56,12 @@ int main() {
 
 			printf("\n[Checksum] %x", msg.rxPacket.checksum);
 
-			printf("\n[Status] %s", (msg.verifyChecksum() == 0) ? "OK" : "ERROR");
+			printf("\n[Status] %s", (msg.rxPacket.error) ? "ERROR" : "OK");
 
 			puts("\n-----------------------------\n");
 			
 			msg.currentStep = Message::parsingPreamble;
 		}
-		usleep(1);
+		usleep(1); /**< very important */
 	}
 }
