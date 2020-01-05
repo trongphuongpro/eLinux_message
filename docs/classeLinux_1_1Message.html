@@ -69,7 +69,8 @@ $(function() {
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#pub-attribs">Data Fields</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle">
 <div class="title">eLinux::Message Class Reference</div>  </div>
 </div><!--header-->
@@ -112,14 +113,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac5db629a9dbc2934239469af69098de8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ac5db629a9dbc2934239469af69098de8">Message</a> (BBB::UART::PORT port, int baudrate, uint8_t datasize)</td></tr>
 <tr class="memdesc:ac5db629a9dbc2934239469af69098de8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="classeLinux_1_1Message.html#ac5db629a9dbc2934239469af69098de8">More...</a><br /></td></tr>
 <tr class="separator:ac5db629a9dbc2934239469af69098de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad522e5fa7e91adb0303e79c60dea7c08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ad522e5fa7e91adb0303e79c60dea7c08">~Message</a> ()</td></tr>
+<tr class="memitem:ad522e5fa7e91adb0303e79c60dea7c08"><td class="memItemLeft" align="right" valign="top"><a id="ad522e5fa7e91adb0303e79c60dea7c08"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ad522e5fa7e91adb0303e79c60dea7c08">~Message</a> ()</td></tr>
+<tr class="memdesc:ad522e5fa7e91adb0303e79c60dea7c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
 <tr class="separator:ad522e5fa7e91adb0303e79c60dea7c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ad5651f5eeecc2a5bb6e80ba74667fb83">send</a> (const void *preamble, uint8_t destination, uint8_t source, const void *payload, uint8_t len)</td></tr>
 <tr class="memdesc:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send message packet.  <a href="classeLinux_1_1Message.html#ad5651f5eeecc2a5bb6e80ba74667fb83">More...</a><br /></td></tr>
 <tr class="separator:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07bddf8959389da3f225d2bcb9755157"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a07bddf8959389da3f225d2bcb9755157">verifyChecksum</a> ()</td></tr>
-<tr class="memdesc:a07bddf8959389da3f225d2bcb9755157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the integrity of the data.  <a href="classeLinux_1_1Message.html#a07bddf8959389da3f225d2bcb9755157">More...</a><br /></td></tr>
-<tr class="separator:a07bddf8959389da3f225d2bcb9755157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa775627c0f0d7a3c1e95ccbae4f86d05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#aa775627c0f0d7a3c1e95ccbae4f86d05">setPreamble</a> (uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)</td></tr>
 <tr class="memdesc:aa775627c0f0d7a3c1e95ccbae4f86d05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set valid preamble (4 bytes) for incoming packet.  <a href="classeLinux_1_1Message.html#aa775627c0f0d7a3c1e95ccbae4f86d05">More...</a><br /></td></tr>
 <tr class="separator:aa775627c0f0d7a3c1e95ccbae4f86d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,6 +138,12 @@ struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux
 struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux::Message::MessagePacket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a7409f2fde9e9e1da7edd5e7330b708ca">txPacket</a></td></tr>
 <tr class="memdesc:a7409f2fde9e9e1da7edd5e7330b708ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">packet for outgoing message <br /></td></tr>
 <tr class="separator:a7409f2fde9e9e1da7edd5e7330b708ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aed481e3c9ae875d746e3c8b58ee74901"><td class="memItemLeft" align="right" valign="top"><a id="aed481e3c9ae875d746e3c8b58ee74901"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ISR</b> (void *arg)</td></tr>
+<tr class="separator:aed481e3c9ae875d746e3c8b58ee74901"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>class <a class="el" href="classeLinux_1_1Message.html" title="class Message used for transmitting/receiving message packet">Message</a> used for transmitting/receiving message packet </p>
@@ -214,24 +220,6 @@ struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="ad522e5fa7e91adb0303e79c60dea7c08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad522e5fa7e91adb0303e79c60dea7c08">&#9670;&nbsp;</a></span>~Message()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">eLinux::Message::~Message </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Destructor </p>
 
 </div>
 </div>
@@ -345,26 +333,6 @@ struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>nothing. </dd></dl>
-
-</div>
-</div>
-<a id="a07bddf8959389da3f225d2bcb9755157"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07bddf8959389da3f225d2bcb9755157">&#9670;&nbsp;</a></span>verifyChecksum()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int eLinux::Message::verifyChecksum </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Check the integrity of the data. </p>
-<dl class="section return"><dt>Returns</dt><dd>0: OK, -1: Error </dd></dl>
 
 </div>
 </div>
