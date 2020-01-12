@@ -9,15 +9,16 @@ set(CMAKE_C_COMPILER arm-linux-gcc)
 #-----------------------------------------------------------------------------#
 
 add_subdirectory(/home/trongphuong/Work/BBB/libraries/uart uart)
+add_subdirectory(/home/trongphuong/Work/BBB/libraries/crc32 crc32)
 
 set(TARGET testbench)
 
 add_executable(${TARGET} test.cpp ../src/message.cpp)
-target_link_libraries(${TARGET} uart ${CMAKE_SOURCE_DIR}/../lib/libcrc32.a)
+target_link_libraries(${TARGET} uart crc32)
 target_include_directories(${TARGET} PUBLIC ../include)
 
 #-----------------------------------------------------------------------------#
-target_compile_options(${TARGET} PUBLIC -std=gnu++11
+target_compile_options(${TARGET} PUBLIC 
 										-Wall
 										-Werror
 										-O2

@@ -32,7 +32,6 @@ Message::Message(UART::PORT port, int baudrate, uint8_t datasize)
 
 	this->currentStep = parsingPreamble;
 
-	crc32_init();
 	onReceiveData(ISR);
 }
 
@@ -100,7 +99,11 @@ void Message::createPacket(const void* _preamble,
 
 
 	// CHECKSUM CRC32
-	this->txPacket.checksum = crc32_compute(this->txPacket.payload, this->txPacket.payloadSize);
+	this->txPacket.checksum = crc32_concat(crc32_compute(&this->txPacket, 
+											sizeof(this->txPacket.preamble) 
+											+ sizeof(this->txPacket.address) 
+											+ sizeof(this->txPacket.payloadSize)),
+								this->txPacket.payload, this->txPacket.payloadSize);
 }
 
 
@@ -183,13 +186,13 @@ void Message::parseChecksum(void *packet) {
 	if (rxMessage->currentStep == parsingChecksum) {
 		static int counter;
 
-		*((uint8_t*)(&(rxMessage->rxPacket.checksum))+counter) = rxMessage->read();
+		((uint8_t*)&(rxMessage->rxPacket.checksum))[counter] = rxMessage->read();
 		counter++;
 
 		if (counter == sizeof(crc32_t)) {
 			counter = 0;
 
-			rxMessage->rxPacket.error = rxMessage->verifyChecksum();
+			rxMessage->verifyChecksum();
 			rxMessage->currentStep = finish;
 		}
 	}
@@ -197,10 +200,11 @@ void Message::parseChecksum(void *packet) {
 
 
 int Message::verifyChecksum() {
-	crc32_t ret = crc32_compute(&rxPacket, sizeof(rxPacket.preamble) 
-										+ sizeof(rxPacket.address) 
-										+ sizeof(rxPacket.payloadSize)
-										+ rxPacket.payloadSize);
+	crc32_t ret = crc32_concat(crc32_compute(&this->rxPacket, 
+											sizeof(this->rxPacket.preamble) 
+											+ sizeof(this->rxPacket.address) 
+											+ sizeof(this->rxPacket.payloadSize)),
+								this->rxPacket.payload, this->rxPacket.payloadSize);
 
 	if (ret == this->rxPacket.checksum) {
 		return 0;

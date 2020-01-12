@@ -26,7 +26,7 @@
 /** 
  * @brief maximum payload size
  */		
-#define MESSAGE_MAX_PAYLOAD_SIZE	100
+#define MESSAGE_MAX_PAYLOAD_SIZE	32
 
 
 /**
@@ -63,8 +63,8 @@ public:
 		uint8_t payloadSize; /**< @brief size of payload  */
 		uint8_t payload[MESSAGE_MAX_PAYLOAD_SIZE]; /**< @brief array contains payload */
 		crc32_t checksum; /**< @brief CRC-32 checksum */
-		uint8_t error;
-	}	rxPacket, /**< @brief packet for incoming message */
+	} __attribute__((packed)) 
+		rxPacket, /**< @brief packet for incoming message */
 		txPacket; /**< @brief packet for outgoing message */
 
 
