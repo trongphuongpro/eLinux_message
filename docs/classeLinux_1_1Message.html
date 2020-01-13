@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MessageProtocol: eLinux::Message Class Reference</title>
+<title>MessageProtocol: eLinux::Message&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -72,7 +72,7 @@ $(function() {
 <a href="#pub-attribs">Data Fields</a> &#124;
 <a href="#friends">Friends</a>  </div>
   <div class="headertitle">
-<div class="title">eLinux::Message Class Reference</div>  </div>
+<div class="title">eLinux::Message&lt; T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -80,12 +80,6 @@ $(function() {
  <a href="classeLinux_1_1Message.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="message_8h_source.html">message.h</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for eLinux::Message:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="classeLinux_1_1Message.png" alt=""/>
- </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
@@ -96,13 +90,13 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:ac1c04e68edc1b010d7b3bf73b4e466e7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7">steps</a> { <br />
-&#160;&#160;<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7a5a1d5488dc87443596010fde3df55cf5">parsingPreamble</a> =0, 
-<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7af18287e37f794bde97fbaa684f8fccbe">parsingAddress</a>, 
-<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7a293652beb9eff203ed0d83642ee9c88e">parsingSize</a>, 
-<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7a2f40fa23ab0989249f26de127579c62c">parsingPayload</a>, 
+&#160;&#160;<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7a08ff94173f034aa8e5f0906674ab878a">parsingPreamble</a> =0, 
+<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7a6feca480e853e8f359a6d031363d0ae7">parsingAddress</a>, 
+<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7a21102905612a470182b58dc3ccb07d5a">parsingSize</a>, 
+<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7a233d0d0be60e09d9318ae49498bdbf12">parsingPayload</a>, 
 <br />
-&#160;&#160;<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7aa31136a6267f1faa44a5c0c0600da767">parsingChecksum</a>, 
-<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7a1f420f08aa0a069f0e9788d568345564">finish</a>
+&#160;&#160;<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7a35851c7397f69fa998557544b8970167">parsingChecksum</a>, 
+<a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7ae9d1e9124bbba0e63744d752e7b23da1">finish</a>
 <br />
  }</td></tr>
 <tr class="memdesc:ac1c04e68edc1b010d7b3bf73b4e466e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">enum contains code for each step of transmitting/receiving procedure  <a href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7">More...</a><br /></td></tr>
@@ -110,34 +104,34 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac5db629a9dbc2934239469af69098de8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ac5db629a9dbc2934239469af69098de8">Message</a> (BBB::UART::PORT port, int baudrate, uint8_t datasize)</td></tr>
-<tr class="memdesc:ac5db629a9dbc2934239469af69098de8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="classeLinux_1_1Message.html#ac5db629a9dbc2934239469af69098de8">More...</a><br /></td></tr>
-<tr class="separator:ac5db629a9dbc2934239469af69098de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad522e5fa7e91adb0303e79c60dea7c08"><td class="memItemLeft" align="right" valign="top"><a id="ad522e5fa7e91adb0303e79c60dea7c08"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ad522e5fa7e91adb0303e79c60dea7c08">~Message</a> ()</td></tr>
-<tr class="memdesc:ad522e5fa7e91adb0303e79c60dea7c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
-<tr class="separator:ad522e5fa7e91adb0303e79c60dea7c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ad5651f5eeecc2a5bb6e80ba74667fb83">send</a> (const void *preamble, uint8_t destination, uint8_t source, const void *payload, uint8_t len)</td></tr>
-<tr class="memdesc:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send message packet.  <a href="classeLinux_1_1Message.html#ad5651f5eeecc2a5bb6e80ba74667fb83">More...</a><br /></td></tr>
-<tr class="separator:ad5651f5eeecc2a5bb6e80ba74667fb83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa775627c0f0d7a3c1e95ccbae4f86d05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#aa775627c0f0d7a3c1e95ccbae4f86d05">setPreamble</a> (uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)</td></tr>
-<tr class="memdesc:aa775627c0f0d7a3c1e95ccbae4f86d05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set valid preamble (4 bytes) for incoming packet.  <a href="classeLinux_1_1Message.html#aa775627c0f0d7a3c1e95ccbae4f86d05">More...</a><br /></td></tr>
-<tr class="separator:aa775627c0f0d7a3c1e95ccbae4f86d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09384be938810d9e6c56cb922a5edcd9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a09384be938810d9e6c56cb922a5edcd9">Message</a> (T &amp;device)</td></tr>
+<tr class="memdesc:a09384be938810d9e6c56cb922a5edcd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="classeLinux_1_1Message.html#a09384be938810d9e6c56cb922a5edcd9">More...</a><br /></td></tr>
+<tr class="separator:a09384be938810d9e6c56cb922a5edcd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1c2d24ff639d47c0ef815bf07ba79f"><td class="memItemLeft" align="right" valign="top"><a id="a9d1c2d24ff639d47c0ef815bf07ba79f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a9d1c2d24ff639d47c0ef815bf07ba79f">~Message</a> ()</td></tr>
+<tr class="memdesc:a9d1c2d24ff639d47c0ef815bf07ba79f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="separator:a9d1c2d24ff639d47c0ef815bf07ba79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60d5810688a7f5a0b52ee3591a001b04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a60d5810688a7f5a0b52ee3591a001b04">send</a> (const void *preamble, uint8_t destination, uint8_t source, const void *payload, uint8_t len)</td></tr>
+<tr class="memdesc:a60d5810688a7f5a0b52ee3591a001b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send message packet.  <a href="classeLinux_1_1Message.html#a60d5810688a7f5a0b52ee3591a001b04">More...</a><br /></td></tr>
+<tr class="separator:a60d5810688a7f5a0b52ee3591a001b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae46d1839e89efcf9f54a042d339225fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ae46d1839e89efcf9f54a042d339225fe">setPreamble</a> (uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)</td></tr>
+<tr class="memdesc:ae46d1839e89efcf9f54a042d339225fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set valid preamble (4 bytes) for incoming packet.  <a href="classeLinux_1_1Message.html#ae46d1839e89efcf9f54a042d339225fe">More...</a><br /></td></tr>
+<tr class="separator:ae46d1839e89efcf9f54a042d339225fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a1b80e1ac9b4377d3e9d4d2efe040faeb"><td class="memItemLeft" align="right" valign="top"><a id="a1b80e1ac9b4377d3e9d4d2efe040faeb"></a>
-enum <a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7">eLinux::Message::steps</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a1b80e1ac9b4377d3e9d4d2efe040faeb">currentStep</a></td></tr>
-<tr class="memdesc:a1b80e1ac9b4377d3e9d4d2efe040faeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">variable contains current state of procedure <br /></td></tr>
-<tr class="separator:a1b80e1ac9b4377d3e9d4d2efe040faeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40486b0aa5ae27320ce981519d9e403f"><td class="memItemLeft" align="right" valign="top"><a id="a40486b0aa5ae27320ce981519d9e403f"></a>
-struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux::Message::MessagePacket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a40486b0aa5ae27320ce981519d9e403f">rxPacket</a></td></tr>
-<tr class="memdesc:a40486b0aa5ae27320ce981519d9e403f"><td class="mdescLeft">&#160;</td><td class="mdescRight">packet for incoming message <br /></td></tr>
-<tr class="separator:a40486b0aa5ae27320ce981519d9e403f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7409f2fde9e9e1da7edd5e7330b708ca"><td class="memItemLeft" align="right" valign="top"><a id="a7409f2fde9e9e1da7edd5e7330b708ca"></a>
-struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux::Message::MessagePacket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a7409f2fde9e9e1da7edd5e7330b708ca">txPacket</a></td></tr>
-<tr class="memdesc:a7409f2fde9e9e1da7edd5e7330b708ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">packet for outgoing message <br /></td></tr>
-<tr class="separator:a7409f2fde9e9e1da7edd5e7330b708ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1efc186f394f8bb9c380bed6e03c218"><td class="memItemLeft" align="right" valign="top"><a id="ac1efc186f394f8bb9c380bed6e03c218"></a>
+enum <a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7">eLinux::Message::steps</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#ac1efc186f394f8bb9c380bed6e03c218">currentStep</a></td></tr>
+<tr class="memdesc:ac1efc186f394f8bb9c380bed6e03c218"><td class="mdescLeft">&#160;</td><td class="mdescRight">variable contains current state of procedure <br /></td></tr>
+<tr class="separator:ac1efc186f394f8bb9c380bed6e03c218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bf2690e238bd4c1f6082046a57ea3a1"><td class="memItemLeft" align="right" valign="top"><a id="a8bf2690e238bd4c1f6082046a57ea3a1"></a>
+struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux::Message::MessagePacket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a8bf2690e238bd4c1f6082046a57ea3a1">rxPacket</a></td></tr>
+<tr class="memdesc:a8bf2690e238bd4c1f6082046a57ea3a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">packet for incoming message <br /></td></tr>
+<tr class="separator:a8bf2690e238bd4c1f6082046a57ea3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fb837a81900b149dc98754c94a71cda"><td class="memItemLeft" align="right" valign="top"><a id="a0fb837a81900b149dc98754c94a71cda"></a>
+struct <a class="el" href="structeLinux_1_1Message_1_1MessagePacket.html">eLinux::Message::MessagePacket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1Message.html#a0fb837a81900b149dc98754c94a71cda">txPacket</a></td></tr>
+<tr class="memdesc:a0fb837a81900b149dc98754c94a71cda"><td class="mdescLeft">&#160;</td><td class="mdescRight">packet for outgoing message <br /></td></tr>
+<tr class="separator:a0fb837a81900b149dc98754c94a71cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -146,13 +140,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ISR</b> (void *arg)</
 <tr class="separator:aed481e3c9ae875d746e3c8b58ee74901"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>class <a class="el" href="classeLinux_1_1Message.html" title="class Message used for transmitting/receiving message packet">Message</a> used for transmitting/receiving message packet </p>
+<div class="textblock"><h3>template&lt;class T&gt;<br />
+class eLinux::Message&lt; T &gt;</h3>
+
+<p>class <a class="el" href="classeLinux_1_1Message.html" title="class Message used for transmitting/receiving message packet">Message</a> used for transmitting/receiving message packet </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="ac1c04e68edc1b010d7b3bf73b4e466e7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1c04e68edc1b010d7b3bf73b4e466e7">&#9670;&nbsp;</a></span>steps</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">enum <a class="el" href="classeLinux_1_1Message.html#ac1c04e68edc1b010d7b3bf73b4e466e7">eLinux::Message::steps</a></td>
@@ -162,51 +161,37 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ISR</b> (void *arg)</
 
 <p>enum contains code for each step of transmitting/receiving procedure </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7a5a1d5488dc87443596010fde3df55cf5"></a>parsingPreamble&#160;</td><td class="fielddoc"><p>step 1: parse the preamble </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7a08ff94173f034aa8e5f0906674ab878a"></a>parsingPreamble&#160;</td><td class="fielddoc"><p>step 1: parse the preamble </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7af18287e37f794bde97fbaa684f8fccbe"></a>parsingAddress&#160;</td><td class="fielddoc"><p>step 2: receive destination and source address </p>
+<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7a6feca480e853e8f359a6d031363d0ae7"></a>parsingAddress&#160;</td><td class="fielddoc"><p>step 2: receive destination and source address </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7a293652beb9eff203ed0d83642ee9c88e"></a>parsingSize&#160;</td><td class="fielddoc"><p>step 3: receive payload size </p>
+<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7a21102905612a470182b58dc3ccb07d5a"></a>parsingSize&#160;</td><td class="fielddoc"><p>step 3: receive payload size </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7a2f40fa23ab0989249f26de127579c62c"></a>parsingPayload&#160;</td><td class="fielddoc"><p>step 4: receive payload </p>
+<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7a233d0d0be60e09d9318ae49498bdbf12"></a>parsingPayload&#160;</td><td class="fielddoc"><p>step 4: receive payload </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7aa31136a6267f1faa44a5c0c0600da767"></a>parsingChecksum&#160;</td><td class="fielddoc"><p>step 5: receive CRC-32 checksum </p>
+<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7a35851c7397f69fa998557544b8970167"></a>parsingChecksum&#160;</td><td class="fielddoc"><p>step 5: receive CRC-32 checksum </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7a1f420f08aa0a069f0e9788d568345564"></a>finish&#160;</td><td class="fielddoc"><p>step 6: finish receiving prodedure </p>
+<tr><td class="fieldname"><a id="ac1c04e68edc1b010d7b3bf73b4e466e7ae9d1e9124bbba0e63744d752e7b23da1"></a>finish&#160;</td><td class="fielddoc"><p>step 6: finish receiving prodedure </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac5db629a9dbc2934239469af69098de8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5db629a9dbc2934239469af69098de8">&#9670;&nbsp;</a></span>Message()</h2>
+<a id="a09384be938810d9e6c56cb922a5edcd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09384be938810d9e6c56cb922a5edcd9">&#9670;&nbsp;</a></span>Message()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">eLinux::Message::Message </td>
+          <td class="memname"><a class="el" href="classeLinux_1_1Message.html">eLinux::Message</a>&lt; T &gt;::<a class="el" href="classeLinux_1_1Message.html">Message</a> </td>
           <td>(</td>
-          <td class="paramtype">BBB::UART::PORT&#160;</td>
-          <td class="paramname"><em>port</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>device</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>baudrate</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>datasize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -224,14 +209,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ISR</b> (void *arg)</
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad5651f5eeecc2a5bb6e80ba74667fb83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5651f5eeecc2a5bb6e80ba74667fb83">&#9670;&nbsp;</a></span>send()</h2>
+<a id="a60d5810688a7f5a0b52ee3591a001b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60d5810688a7f5a0b52ee3591a001b04">&#9670;&nbsp;</a></span>send()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void eLinux::Message::send </td>
+          <td class="memname">void <a class="el" href="classeLinux_1_1Message.html">eLinux::Message</a>&lt; T &gt;::send </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>preamble</em>, </td>
@@ -284,14 +271,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ISR</b> (void *arg)</
 
 </div>
 </div>
-<a id="aa775627c0f0d7a3c1e95ccbae4f86d05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa775627c0f0d7a3c1e95ccbae4f86d05">&#9670;&nbsp;</a></span>setPreamble()</h2>
+<a id="ae46d1839e89efcf9f54a042d339225fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae46d1839e89efcf9f54a042d339225fe">&#9670;&nbsp;</a></span>setPreamble()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void eLinux::Message::setPreamble </td>
+          <td class="memname">void <a class="el" href="classeLinux_1_1Message.html">eLinux::Message</a>&lt; T &gt;::setPreamble </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>b1</em>, </td>

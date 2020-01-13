@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "message.h"
-
+#include "uart.h"
 
 using namespace std;
 using namespace BBB;
@@ -21,8 +21,8 @@ using namespace BBB;
 namespace eLinux {
 
 
-Message::Message(UART::PORT port, int baudrate, uint8_t datasize)
-	: UART(port, baudrate, datasize) {
+template <class T>
+Message<T>::Message(T& _device): device{_device} {
 
 	this->callback[0] = parsePreamble;
 	this->callback[1] = parseAddress;
@@ -32,16 +32,18 @@ Message::Message(UART::PORT port, int baudrate, uint8_t datasize)
 
 	this->currentStep = parsingPreamble;
 
-	onReceiveData(ISR);
+	this->device.onReceiveData(ISR);
 }
 
 
-Message::~Message() {
+template <class T>
+Message<T>::~Message() {
 
 }
 
 
-void Message::send(const void* preamble,
+template <class T>
+void Message<T>::send(const void* preamble,
 					uint8_t destination, 
 					uint8_t source, 
 					const void* payload, 
@@ -49,17 +51,18 @@ void Message::send(const void* preamble,
 {
 	createPacket(preamble, destination, source, payload, len);
 
-	writeBuffer(this->txPacket.preamble, MESSAGE_PREAMBLE_SIZE);
-	writeBuffer(this->txPacket.address, 2);
-	write(this->txPacket.payloadSize);
-	writeBuffer(this->txPacket.payload, this->txPacket.payloadSize);
-	writeBuffer(&(this->txPacket.checksum), sizeof(crc32_t));
+	this->device.writeBuffer(this->txPacket.preamble, MESSAGE_PREAMBLE_SIZE);
+	this->device.writeBuffer(this->txPacket.address, 2);
+	this->device.write(this->txPacket.payloadSize);
+	this->device.writeBuffer(this->txPacket.payload, this->txPacket.payloadSize);
+	this->device.writeBuffer(&(this->txPacket.checksum), sizeof(crc32_t));
 
 	usleep(500000); /**< pause minimum 500ms between packets */
 }
 
 
-void Message::setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4) {
+template <class T>
+void Message<T>::setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4) {
 	this->validPreamble[0] = b1;
 	this->validPreamble[1] = b2;
 	this->validPreamble[2] = b3;
@@ -67,7 +70,8 @@ void Message::setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4) {
 }
 
 
-void Message::createPacket(const void* _preamble,
+template <class T>
+void Message<T>::createPacket(const void* _preamble,
 							uint8_t destination, 
 							uint8_t source, 
 							const void* _payload, 
@@ -107,14 +111,15 @@ void Message::createPacket(const void* _preamble,
 }
 
 
-void Message::parsePreamble(void *packet) {
+template <class T>
+void Message<T>::parsePreamble(void *packet) {
 	
 	Message* rxMessage = static_cast<Message*>(packet);
 
 	if (rxMessage->currentStep == parsingPreamble) {
 		static int counter;
 
-		rxMessage->rxPacket.preamble[counter] = rxMessage->read();
+		rxMessage->rxPacket.preamble[counter] = rxMessage->device.read();
 
 		if (rxMessage->rxPacket.preamble[counter] == rxMessage->validPreamble[counter]) {
 			counter++;
@@ -132,15 +137,16 @@ void Message::parsePreamble(void *packet) {
 }
 
 
-void Message::parseAddress(void *packet) {
+template <class T>
+void Message<T>::parseAddress(void *packet) {
 	
 
-	Message* rxMessage = static_cast<Message*>(packet);
+	Message<T>* rxMessage = static_cast<Message<T>*>(packet);
 
 	if (rxMessage->currentStep == parsingAddress) {
 		static int counter;
 
-		rxMessage->rxPacket.address[counter++] = rxMessage->read();
+		rxMessage->rxPacket.address[counter++] = rxMessage->device.read();
 
 		// go to next currentStep if 2-byte address is read.
 		if (counter == 2) {
@@ -151,25 +157,27 @@ void Message::parseAddress(void *packet) {
 }
 
 
-void Message::parseSize(void *packet) {
+template <class T>
+void Message<T>::parseSize(void *packet) {
 	
-	Message* rxMessage = static_cast<Message*>(packet);
+	Message<T>* rxMessage = static_cast<Message<T>*>(packet);
 
 	if (rxMessage->currentStep == parsingSize) {
-		rxMessage->rxPacket.payloadSize = rxMessage->read();
+		rxMessage->rxPacket.payloadSize = rxMessage->device.read();
 		rxMessage->currentStep = parsingPayload;
 	}
 }
 
 
-void Message::parsePayload(void *packet) {
+template <class T>
+void Message<T>::parsePayload(void *packet) {
 	
-	Message* rxMessage = static_cast<Message*>(packet);
+	Message<T>* rxMessage = static_cast<Message<T>*>(packet);
 
 	if (rxMessage->currentStep == parsingPayload) {
 		static int counter;
 
-		rxMessage->rxPacket.payload[counter++] = rxMessage->read();
+		rxMessage->rxPacket.payload[counter++] = rxMessage->device.read();
 
 		if (counter == rxMessage->rxPacket.payloadSize || counter == MESSAGE_MAX_PAYLOAD_SIZE) {
 			counter = 0;
@@ -179,14 +187,15 @@ void Message::parsePayload(void *packet) {
 }
 
 
-void Message::parseChecksum(void *packet) {
+template <class T>
+void Message<T>::parseChecksum(void *packet) {
 	
-	Message* rxMessage = static_cast<Message*>(packet);
+	Message<T>* rxMessage = static_cast<Message<T>*>(packet);
 
 	if (rxMessage->currentStep == parsingChecksum) {
 		static int counter;
 
-		((uint8_t*)&(rxMessage->rxPacket.checksum))[counter] = rxMessage->read();
+		((uint8_t*)&(rxMessage->rxPacket.checksum))[counter] = rxMessage->device.read();
 		counter++;
 
 		if (counter == sizeof(crc32_t)) {
@@ -199,7 +208,8 @@ void Message::parseChecksum(void *packet) {
 }
 
 
-int Message::verifyChecksum() {
+template <class T>
+int Message<T>::verifyChecksum() {
 	crc32_t ret = crc32_concat(crc32_compute(&this->rxPacket, 
 											sizeof(this->rxPacket.preamble) 
 											+ sizeof(this->rxPacket.address) 
@@ -214,12 +224,4 @@ int Message::verifyChecksum() {
 	}
 }
 
-
-void ISR(void* arg) {
-	Message *msg = static_cast<Message*>(arg);
-
-	if (msg->currentStep < Message::finish) {
-		msg->callback[msg->currentStep](msg);
-	}
-}
 } /* namespace eLinux */

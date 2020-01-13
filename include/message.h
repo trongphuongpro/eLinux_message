@@ -15,7 +15,6 @@
 #define __MESSAGE__
 
 #include "crc32.h"
-#include "uart.h"
 
 /** 
  * @brief massage preamble size
@@ -36,10 +35,13 @@ namespace eLinux {
 
 
 typedef void (*CallbackType)(void*);
+
+
 /**
  * @brief class Message used for transmitting/receiving message packet
  */
-class Message: public BBB::UART {
+template <class T>
+class Message {
 public:
 
 	/** 
@@ -74,7 +76,7 @@ public:
 	 * @param baudrate UART baudrate;
 	 * @param bit data size: 5,6,7 or 8 bit
 	 */
-	Message(BBB::UART::PORT port, int baudrate, uint8_t datasize);
+	Message(T& device);
 
 	/**
 	 * @brief Destructor
@@ -132,6 +134,8 @@ private:
 	static void parseSize(void *);
 	static void parsePayload(void *);
 	static void parseChecksum(void *);
+
+	T& device;
 
 	uint8_t validPreamble[MESSAGE_PREAMBLE_SIZE] = {0xAA, 0xBB, 0xCC, 0xDD};
 

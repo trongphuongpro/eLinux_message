@@ -1,0 +1,31 @@
+/** 
+ * @file message_uart.cpp
+ * @brief Implementations for message protocol using UART.
+ *  
+ * This file is used to create Data Link Layer for UART Physical Layer.
+ *
+ * @author Nguyen Trong Phuong (aka trongphuongpro)
+ * @date January 13, 2020
+ */
+
+
+#include "message.h"
+#include "message.cpp"
+#include "uart.h"
+
+using namespace std;
+using namespace BBB;
+
+namespace eLinux {
+
+template class Message<UART>;
+
+void ISR(void* arg) {
+	Message<UART> *msg = static_cast<Message<UART>*>(arg);
+
+	if (msg->currentStep < Message<UART>::finish) {
+		msg->callback[msg->currentStep](msg);
+	}
+}
+
+} /* namespace eLinux */

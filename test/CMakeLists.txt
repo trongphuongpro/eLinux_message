@@ -13,7 +13,7 @@ add_subdirectory(/home/trongphuong/Work/BBB/libraries/crc32 crc32)
 
 set(TARGET testbench)
 
-add_executable(${TARGET} test.cpp ../src/message.cpp)
+add_executable(${TARGET} test.cpp ../src/message.cpp ../src/message_uart.cpp)
 target_link_libraries(${TARGET} uart crc32)
 target_include_directories(${TARGET} PUBLIC ../include)
 
