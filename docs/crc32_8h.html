@@ -66,7 +66,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -80,15 +79,6 @@ $(function() {
 </div>
 <p><a href="crc32_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a9e13892a1d12dd94447908d840a1d364"><td class="memItemLeft" align="right" valign="top"><a id="a9e13892a1d12dd94447908d840a1d364"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CRC32POLY</b>&#160;&#160;&#160;0x04C11DB7</td></tr>
-<tr class="separator:a9e13892a1d12dd94447908d840a1d364"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a634fca329a19af519544b2cd50761f74"><td class="memItemLeft" align="right" valign="top"><a id="a634fca329a19af519544b2cd50761f74"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CRC32POLY_REVERSE</b>&#160;&#160;&#160;0xEDB88320</td></tr>
-<tr class="separator:a634fca329a19af519544b2cd50761f74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a11acfb80bcc64e1f15096435cefe1079"><td class="memItemLeft" align="right" valign="top"><a id="a11acfb80bcc64e1f15096435cefe1079"></a>
@@ -98,21 +88,21 @@ typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a41e6c9af25a9b41f83886c7121615aba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crc32_8h.html#a41e6c9af25a9b41f83886c7121615aba">crc32_init</a> (void)</td></tr>
-<tr class="memdesc:a41e6c9af25a9b41f83886c7121615aba"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize a table containing 255 predefined CRC-32 values  <a href="crc32_8h.html#a41e6c9af25a9b41f83886c7121615aba">More...</a><br /></td></tr>
-<tr class="separator:a41e6c9af25a9b41f83886c7121615aba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d0dacbd251b370b6c2c5afd8207ec51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crc32_8h.html#a11acfb80bcc64e1f15096435cefe1079">crc32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crc32_8h.html#a5d0dacbd251b370b6c2c5afd8207ec51">crc32_compute</a> (const void *data, uint32_t len)</td></tr>
 <tr class="memdesc:a5d0dacbd251b370b6c2c5afd8207ec51"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute CRC-32 checksum value for a byte array.  <a href="crc32_8h.html#a5d0dacbd251b370b6c2c5afd8207ec51">More...</a><br /></td></tr>
 <tr class="separator:a5d0dacbd251b370b6c2c5afd8207ec51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cd0e5773dab575e4af538161549cb00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crc32_8h.html#a11acfb80bcc64e1f15096435cefe1079">crc32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crc32_8h.html#a6cd0e5773dab575e4af538161549cb00">crc32_concat</a> (<a class="el" href="crc32_8h.html#a11acfb80bcc64e1f15096435cefe1079">crc32_t</a> checksum, const void *data, uint32_t len)</td></tr>
+<tr class="memdesc:a6cd0e5773dab575e4af538161549cb00"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute CRC-32 checksum value for 2 separated data arrays.  <a href="crc32_8h.html#a6cd0e5773dab575e4af538161549cb00">More...</a><br /></td></tr>
+<tr class="separator:a6cd0e5773dab575e4af538161549cb00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae00328ba2f0dce927c49991fbbcc453f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crc32_8h.html#ae00328ba2f0dce927c49991fbbcc453f">crc32_selfcheck</a> (const void *data, uint32_t len, <a class="el" href="crc32_8h.html#a11acfb80bcc64e1f15096435cefe1079">crc32_t</a> checksum)</td></tr>
 <tr class="memdesc:ae00328ba2f0dce927c49991fbbcc453f"><td class="mdescLeft">&#160;</td><td class="mdescRight">check the accuracy of computed CRC-32 checksum value.  <a href="crc32_8h.html#ae00328ba2f0dce927c49991fbbcc453f">More...</a><br /></td></tr>
 <tr class="separator:ae00328ba2f0dce927c49991fbbcc453f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a163e663f1fd09938b3f16021d8917372"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crc32_8h.html#a163e663f1fd09938b3f16021d8917372">crc32_check</a> (const void *data, uint32_t len)</td></tr>
 <tr class="memdesc:a163e663f1fd09938b3f16021d8917372"><td class="mdescLeft">&#160;</td><td class="mdescRight">check the integrity of data.  <a href="crc32_8h.html#a163e663f1fd09938b3f16021d8917372">More...</a><br /></td></tr>
 <tr class="separator:a163e663f1fd09938b3f16021d8917372"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0095c9bb371b0a0129aaeb0f5710ce10"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crc32_8h.html#a0095c9bb371b0a0129aaeb0f5710ce10">reflect</a> (uint8_t data)</td></tr>
-<tr class="memdesc:a0095c9bb371b0a0129aaeb0f5710ce10"><td class="mdescLeft">&#160;</td><td class="mdescRight">reflect one byte data.  <a href="crc32_8h.html#a0095c9bb371b0a0129aaeb0f5710ce10">More...</a><br /></td></tr>
-<tr class="separator:a0095c9bb371b0a0129aaeb0f5710ce10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2d3d4e8fd97f6b58185845d08c7b6be"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crc32_8h.html#ab2d3d4e8fd97f6b58185845d08c7b6be">reverse</a> (uint8_t data)</td></tr>
+<tr class="memdesc:ab2d3d4e8fd97f6b58185845d08c7b6be"><td class="mdescLeft">&#160;</td><td class="mdescRight">reverse one byte data.  <a href="crc32_8h.html#ab2d3d4e8fd97f6b58185845d08c7b6be">More...</a><br /></td></tr>
+<tr class="separator:ab2d3d4e8fd97f6b58185845d08c7b6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Function prototypes for computing CRC-32 checksum. </p>
@@ -197,24 +187,48 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a41e6c9af25a9b41f83886c7121615aba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41e6c9af25a9b41f83886c7121615aba">&#9670;&nbsp;</a></span>crc32_init()</h2>
+<a id="a6cd0e5773dab575e4af538161549cb00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cd0e5773dab575e4af538161549cb00">&#9670;&nbsp;</a></span>crc32_concat()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void crc32_init </td>
+          <td class="memname"><a class="el" href="crc32_8h.html#a11acfb80bcc64e1f15096435cefe1079">crc32_t</a> crc32_concat </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="crc32_8h.html#a11acfb80bcc64e1f15096435cefe1079">crc32_t</a>&#160;</td>
+          <td class="paramname"><em>checksum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>initialize a table containing 255 predefined CRC-32 values </p>
-<dl class="section return"><dt>Returns</dt><dd>nothing. </dd></dl>
+<p>compute CRC-32 checksum value for 2 separated data arrays. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">checksum</td><td>existing checksum value. </td></tr>
+    <tr><td class="paramname">data</td><td>pointer to new data array. </td></tr>
+    <tr><td class="paramname">len</td><td>the length of new data in byte. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>CRC-32 checksum value. </dd></dl>
 
 </div>
 </div>
@@ -265,14 +279,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0095c9bb371b0a0129aaeb0f5710ce10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0095c9bb371b0a0129aaeb0f5710ce10">&#9670;&nbsp;</a></span>reflect()</h2>
+<a id="ab2d3d4e8fd97f6b58185845d08c7b6be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2d3d4e8fd97f6b58185845d08c7b6be">&#9670;&nbsp;</a></span>reverse()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t reflect </td>
+          <td class="memname">uint8_t reverse </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
@@ -281,14 +295,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>reflect one byte data. </p>
+<p>reverse one byte data. </p>
 <p>example: 0b10100011 --&gt; 0b11000101 </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>one byte data. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>reflected data byte. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>reverseed data byte. </dd></dl>
 
 </div>
 </div>
