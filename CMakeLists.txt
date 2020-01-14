@@ -8,18 +8,18 @@ set(CMAKE_CXX_COMPILER arm-linux-g++)
 set(CMAKE_C_COMPILER arm-linux-gcc)
 #-----------------------------------------------------------------------------#
 
-add_subdirectory()
-
 set(TARGET message)
 
-add_executable(${TARGET} )
-add_library(${TARGET} STATIC **source files**)
-target_link_libraries(${TARGET} **lib**)
-target_include_directories(${TARGET} PUBLIC **dirs**)
+add_library(${TARGET} STATIC src/message.cpp 
+							src/message_uart.cpp
+							lib/crc32.c
+							lib/uart.cpp)
+
+target_link_libraries(${TARGET} ${CMAKE_THREAD_LIBS_INIT})
+target_include_directories(${TARGET} PUBLIC include)
 
 #-----------------------------------------------------------------------------#
-target_compile_options(${TARGET} PUBLIC -std=gnu++11
-										-Wall
+target_compile_options(${TARGET} PUBLIC -Wall
 										-Werror
 										-O2
 )
