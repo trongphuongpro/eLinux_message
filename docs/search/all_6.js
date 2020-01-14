@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['rxpacket_19',['rxPacket',['../classeLinux_1_1Message.html#a8bf2690e238bd4c1f6082046a57ea3a1',1,'eLinux::Message']]]
+  ['send_21',['send',['../classeLinux_1_1MessageBox.html#ae04e7427437c3fef6a9a4a89aac1f668',1,'eLinux::MessageBox']]],
+  ['setpreamble_22',['setPreamble',['../classeLinux_1_1MessageBox.html#aaa5fa3b9faa36f4e92a3ed64d232945b',1,'eLinux::MessageBox']]],
+  ['steps_23',['steps',['../namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94b',1,'eLinux']]]
 ];

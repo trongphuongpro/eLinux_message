@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['payload_37',['payload',['../structeLinux_1_1Message_1_1MessagePacket.html#ac604de515a97e8b2475eea816e9b9efa',1,'eLinux::Message::MessagePacket']]],
-  ['payloadsize_38',['payloadSize',['../structeLinux_1_1Message_1_1MessagePacket.html#afba96ea7f224a5066ed865cab451901e',1,'eLinux::Message::MessagePacket']]],
-  ['preamble_39',['preamble',['../structeLinux_1_1Message_1_1MessagePacket.html#ab8dd185f772a95f7982f50e584501ea8',1,'eLinux::Message::MessagePacket']]]
+  ['payload_40',['payload',['../structeLinux_1_1Message.html#a71e0a98e3b96b74035ee76d932fb7bec',1,'eLinux::Message::payload()'],['../structeLinux_1_1MessageFrame.html#a41f494e5a9c3e3a02aaaecf01a07daeb',1,'eLinux::MessageFrame::payload()']]],
+  ['payloadsize_41',['payloadSize',['../structeLinux_1_1Message.html#a4bba2912ad8b13941de744e6232f7c69',1,'eLinux::Message::payloadSize()'],['../structeLinux_1_1MessageFrame.html#abad130733164608798fbfe6fedac66c5',1,'eLinux::MessageFrame::payloadSize()']]],
+  ['preamble_42',['preamble',['../structeLinux_1_1MessageFrame.html#a320be2f379c79a190686165df6076a39',1,'eLinux::MessageFrame']]]
 ];

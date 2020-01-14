@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['txpacket_23',['txPacket',['../classeLinux_1_1Message.html#a0fb837a81900b149dc98754c94a71cda',1,'eLinux::Message']]]
+  ['_7emessagebox_25',['~MessageBox',['../classeLinux_1_1MessageBox.html#a89fe9386bdb0d527cba63bc917977cb8',1,'eLinux::MessageBox']]]
 ];

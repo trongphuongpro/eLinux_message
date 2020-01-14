@@ -13,9 +13,9 @@ uint8_t preamble_1[4] = {0xAA, 0xBB, 0xCC, 0xDD};
 uint8_t preamble_2[4] = {0xAB, 0xBC, 0xCD, 0xDE};
 
 
-int main() {
+/*int main() {
 	UART bus(UART::UART1, 9600);
-	Message<UART> msg(bus);
+	MessageBox<UART> msg(bus);
 
 	const char* s[4] = {"Beaglebone Black", "trongphuongpro",
 						"codelungtung", "uart testing"};
@@ -29,36 +29,29 @@ int main() {
 		}
 		sleep(1);
 	}
-}
+}*/
 
 
-// int main() {
-// 	Message msg(UART::UART1, 9600, 8);
+int main() {
+	UART bus(UART::UART1, 9600);
+	MessageBox<UART> msg(bus);
 
-// 	while (1) {
-// 		if (msg.currentStep == Message::finish) {
-// 			printf("[Preamble] ");
-// 			for (int i = 0; i < 4; i++) {
-// 				printf("%x", msg.rxPacket.preamble[i]);
-// 			}
-			
-// 			printf("\n[Destination] %d", msg.rxPacket.address[0]);
-// 			printf("\n[Source] %d", msg.rxPacket.address[1]);
-// 			printf("\n[Size] %d", msg.rxPacket.payloadSize);
+	Message packet;
+	packet.payload = new uint8_t[MESSAGE_MAX_PAYLOAD_SIZE];
+
+	while (1) {
+		if (msg.isAvailable()) {
+			msg.pop(packet);
+
+			printf("\n[Address] %d", packet.address);
+
+			printf("\n[Size] %d", packet.payloadSize);
 		
-// 			printf("\n[Payload] ");
-// 			for (int i = 0; i < msg.rxPacket.payloadSize; i++) {
-// 				printf("%c", msg.rxPacket.payload[i]);
-// 			}
-
-// 			printf("\n[Checksum] %x", msg.rxPacket.checksum);
-
-// 			printf("\n[Status] %s", (msg.rxPacket.error) ? "ERROR" : "OK");
-
-// 			puts("\n-----------------------------\n");
-			
-// 			msg.currentStep = Message::parsingPreamble;
-// 		}
-// 		usleep(1); /**< very important */
-// 	}
-// }
+			printf("\n[Payload] ");
+			for (int i = 0; i < packet.payloadSize; i++) {
+				printf("%c", packet.payload[i]);
+			}
+		}
+		sleep(5); /**< very important */
+	}
+}

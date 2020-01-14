@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['message_30',['Message',['../classeLinux_1_1Message.html#a09384be938810d9e6c56cb922a5edcd9',1,'eLinux::Message']]]
+  ['isavailable_32',['isAvailable',['../classeLinux_1_1MessageBox.html#a63fff5c12d61be95c3ccc674906e466d',1,'eLinux::MessageBox']]]
 ];

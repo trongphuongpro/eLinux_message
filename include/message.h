@@ -14,6 +14,7 @@
 #ifndef __MESSAGE__
 #define __MESSAGE__
 
+#include <queue>
 #include "crc32.h"
 
 /** 
@@ -37,38 +38,38 @@ namespace eLinux {
 typedef void (*CallbackType)(void*);
 
 
+/** 
+ * @brief enum contains code for each step of transmitting/receiving procedure
+ */  
+enum steps {parsingPreamble=0, /**< step 1: parse the preamble */
+			parsingAddress, /**< step 2: receive destination and source address */
+			parsingSize, /**< step 3: receive payload size */
+			parsingPayload, /**< step 4: receive payload */
+			parsingChecksum, /**< step 5: receive CRC-32 checksum */
+			verifyingChecksum /**< step 6: finish receiving prodedure */
+		}; /**< @brief variable contains current state of procedure */
+
+
+/** 
+ * @brief Struct containing message
+ */
+struct Message {
+	uint8_t address; /**< @brief source address: 1 byte */
+	uint8_t payloadSize; /**< @brief size of payload  */
+	uint8_t *payload; /**< @brief array contains payload */
+} __attribute__((packed));
+
+typedef Message* Message_t;
+
+typedef struct MessageFrame* MessageFrame_t;
+
+
 /**
  * @brief class Message used for transmitting/receiving message packet
  */
 template <class T>
-class Message {
+class MessageBox {
 public:
-
-	/** 
-	 * @brief enum contains code for each step of transmitting/receiving procedure
-	 */  
-	enum steps {parsingPreamble=0, /**< step 1: parse the preamble */
-				parsingAddress, /**< step 2: receive destination and source address */
-				parsingSize, /**< step 3: receive payload size */
-				parsingPayload, /**< step 4: receive payload */
-				parsingChecksum, /**< step 5: receive CRC-32 checksum */
-				finish /**< step 6: finish receiving prodedure */
-			} currentStep; /**< @brief variable contains current state of procedure */
-
-
-	/** 
-	 * @brief Struct containing message packet
-	 */
-	struct MessagePacket {
-		uint8_t preamble[MESSAGE_PREAMBLE_SIZE]; /**< @brief preamble of message packet */
-		uint8_t address[2]; /**< @brief destination and source address: 2 bytes */
-		uint8_t payloadSize; /**< @brief size of payload  */
-		uint8_t payload[MESSAGE_MAX_PAYLOAD_SIZE]; /**< @brief array contains payload */
-		crc32_t checksum; /**< @brief CRC-32 checksum */
-	} __attribute__((packed)) 
-		rxPacket, /**< @brief packet for incoming message */
-		txPacket; /**< @brief packet for outgoing message */
-
 
 	/**
 	 * @brief Constructor
@@ -76,12 +77,12 @@ public:
 	 * @param baudrate UART baudrate;
 	 * @param bit data size: 5,6,7 or 8 bit
 	 */
-	Message(T& device);
+	MessageBox(T& device);
 
 	/**
 	 * @brief Destructor
 	 */
-	~Message();
+	~MessageBox();
 
 
 	/** 
@@ -114,9 +115,32 @@ public:
 	void setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4);
 
 
+	/**
+	 * @brief Pop the oldest Message from Message Box
+	 * @param message pointer to Message instance;
+	 * @return 0: success, -1: failed.
+	 */
+	int pop(Message& message);
+
+
+	/**
+	 * @brief Pop the oldest Message from Message Box
+	 * @param message Message instance;
+	 * @return 0: success, -1: failed.
+	 */
+	int pop(Message_t message);
+
+
+	/**
+	 * @brief Check if new Message is available
+	 * @return true/false.
+	 */
+	bool isAvailable();
+
+
 private:
 
-	void createPacket(const void* preamble,
+	void createFrame(const void* preamble,
 						uint8_t destination, 
 						uint8_t source, 
 						const void* payload, 
@@ -129,20 +153,40 @@ private:
 	int verifyChecksum();
 	
 
+	/**
+	 * @brief Extract message from received frame.
+	 * @param rxFrame received frame.
+	 * @return pointer to new Message.
+	 */
+	Message_t extractMessage(MessageFrame_t rxFrame);
+
+
+	/**
+	 * @brief Clear FIFO buffer.
+	 * @return nothing.
+	 */
+	void clear();
+
 	static void parsePreamble(void *);
 	static void parseAddress(void *);
 	static void parseSize(void *);
 	static void parsePayload(void *);
 	static void parseChecksum(void *);
 
-	T& device;
+	T& device; /**< Physical layer device */
+
+	MessageFrame_t rxFrame; /**< @brief frame for incoming message */
+	MessageFrame_t txFrame; /**< @brief frame for outgoing message */
+
+	std::queue<Message_t> FIFO; /**< FIFO buffer containing Messages */
+
+	steps currentStep;
 
 	uint8_t validPreamble[MESSAGE_PREAMBLE_SIZE] = {0xAA, 0xBB, 0xCC, 0xDD};
 
 	CallbackType callback[5];
 
 	friend void ISR(void *arg);
-
 };
 
 void ISR(void* arg);

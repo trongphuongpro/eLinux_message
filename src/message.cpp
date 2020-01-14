@@ -1,6 +1,6 @@
 /** 
- * @file message.cpp
- * @brief Implementations for message protocol
+ * @file MessageBox.cpp
+ * @brief Implementations for MessageBox protocol
  *  
  * This C++ library is used to create Data Link Layer for existed Physical Layers,
  * such as UART, SPI, I2C,...
@@ -9,20 +9,34 @@
  * @date January 2, 2020
  */
 
-
-#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "message.h"
-#include "uart.h"
 
 using namespace std;
-using namespace BBB;
 
 namespace eLinux {
 
 
+/** 
+ * @brief Struct containing message frame
+ */
+struct MessageFrame {
+	uint8_t preamble[MESSAGE_PREAMBLE_SIZE]; /**< @brief preamble of message frame */
+	uint8_t address[2]; /**< @brief destination and source address: 2 bytes */
+	uint8_t payloadSize; /**< @brief size of payload  */
+	uint8_t *payload; /**< @brief array contains payload */
+	crc32_t checksum; /**< @brief CRC-32 checksum */
+} __attribute__((packed));
+
+
 template <class T>
-Message<T>::Message(T& _device): device{_device} {
+MessageBox<T>::MessageBox(T& _device): device{_device} {
+
+	this->rxFrame = new MessageFrame;
+	this->txFrame = new MessageFrame;
 
 	this->callback[0] = parsePreamble;
 	this->callback[1] = parseAddress;
@@ -32,37 +46,47 @@ Message<T>::Message(T& _device): device{_device} {
 
 	this->currentStep = parsingPreamble;
 
-	this->device.onReceiveData(ISR);
+	this->device.onReceiveData(ISR, this);
 }
 
 
 template <class T>
-Message<T>::~Message() {
+MessageBox<T>::~MessageBox() {
+	clear();
+	
+	delete this->rxFrame->payload;
+	delete this->txFrame->payload;
 
+	delete this->rxFrame;
+	delete this->txFrame;
 }
 
 
 template <class T>
-void Message<T>::send(const void* preamble,
+void MessageBox<T>::send(const void* preamble,
 					uint8_t destination, 
 					uint8_t source, 
 					const void* payload, 
 					uint8_t len)
 {
-	createPacket(preamble, destination, source, payload, len);
+	createFrame(preamble, destination, source, payload, len);
 
-	this->device.writeBuffer(this->txPacket.preamble, MESSAGE_PREAMBLE_SIZE);
-	this->device.writeBuffer(this->txPacket.address, 2);
-	this->device.write(this->txPacket.payloadSize);
-	this->device.writeBuffer(this->txPacket.payload, this->txPacket.payloadSize);
-	this->device.writeBuffer(&(this->txPacket.checksum), sizeof(crc32_t));
+	this->device.writeBuffer(this->txFrame->preamble, MESSAGE_PREAMBLE_SIZE);
+	this->device.writeBuffer(this->txFrame->address, 2);
+	this->device.write(this->txFrame->payloadSize);
+	this->device.writeBuffer(this->txFrame->payload, this->txFrame->payloadSize);
+	this->device.writeBuffer(&(this->txFrame->checksum), sizeof(crc32_t));
 
+	/**
+	 * free memore allocated for payload
+	 */
+	delete this->txFrame->payload;
 	usleep(500000); /**< pause minimum 500ms between packets */
 }
 
 
 template <class T>
-void Message<T>::setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4) {
+void MessageBox<T>::setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4) {
 	this->validPreamble[0] = b1;
 	this->validPreamble[1] = b2;
 	this->validPreamble[2] = b3;
@@ -71,7 +95,7 @@ void Message<T>::setPreamble(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4) {
 
 
 template <class T>
-void Message<T>::createPacket(const void* _preamble,
+void MessageBox<T>::createFrame(const void* _preamble,
 							uint8_t destination, 
 							uint8_t source, 
 							const void* _payload, 
@@ -82,46 +106,47 @@ void Message<T>::createPacket(const void* _preamble,
 
 	// PREAMBLE
 	for (uint8_t i = 0; i < MESSAGE_PREAMBLE_SIZE; i++) {
-		this->txPacket.preamble[i] = preamble[i];
+		this->txFrame->preamble[i] = preamble[i];
 	}
 
 
 	// ADDRESS
-	this->txPacket.address[0] = destination;
-	this->txPacket.address[1] = source;
+	this->txFrame->address[0] = destination;
+	this->txFrame->address[1] = source;
 
 
 	// PAYLOAD SIZE
-	this->txPacket.payloadSize = (len > MESSAGE_MAX_PAYLOAD_SIZE) ? 
+	this->txFrame->payloadSize = (len > MESSAGE_MAX_PAYLOAD_SIZE) ? 
 									MESSAGE_MAX_PAYLOAD_SIZE : len;
 
 
 	// PAYLOAD 
-	for (uint8_t i = 0; i < this->txPacket.payloadSize; i++) {
-		this->txPacket.payload[i] = payload[i];
+	this->txFrame->payload = new uint8_t[this->txFrame->payloadSize];
+
+	for (uint8_t i = 0; i < this->txFrame->payloadSize; i++) {
+		this->txFrame->payload[i] = payload[i];
 	}
 
 
 	// CHECKSUM CRC32
-	this->txPacket.checksum = crc32_concat(crc32_compute(&this->txPacket, 
-											sizeof(this->txPacket.preamble) 
-											+ sizeof(this->txPacket.address) 
-											+ sizeof(this->txPacket.payloadSize)),
-								this->txPacket.payload, this->txPacket.payloadSize);
+	this->txFrame->checksum = crc32_concat(crc32_compute(this->txFrame, 
+											sizeof(this->txFrame->preamble) 
+											+ sizeof(this->txFrame->address) 
+											+ sizeof(this->txFrame->payloadSize)),
+								this->txFrame->payload, this->txFrame->payloadSize);
 }
 
 
 template <class T>
-void Message<T>::parsePreamble(void *packet) {
-	
-	Message* rxMessage = static_cast<Message*>(packet);
+void MessageBox<T>::parsePreamble(void *packet) {
+	MessageBox* rxMessage = static_cast<MessageBox*>(packet);
 
 	if (rxMessage->currentStep == parsingPreamble) {
 		static int counter;
 
-		rxMessage->rxPacket.preamble[counter] = rxMessage->device.read();
+		rxMessage->rxFrame->preamble[counter] = rxMessage->device.read();
 
-		if (rxMessage->rxPacket.preamble[counter] == rxMessage->validPreamble[counter]) {
+		if (rxMessage->rxFrame->preamble[counter] == rxMessage->validPreamble[counter]) {
 			counter++;
 		}
 		else {
@@ -138,15 +163,13 @@ void Message<T>::parsePreamble(void *packet) {
 
 
 template <class T>
-void Message<T>::parseAddress(void *packet) {
-	
-
-	Message<T>* rxMessage = static_cast<Message<T>*>(packet);
+void MessageBox<T>::parseAddress(void *packet) {
+	MessageBox<T>* rxMessage = static_cast<MessageBox<T>*>(packet);
 
 	if (rxMessage->currentStep == parsingAddress) {
 		static int counter;
 
-		rxMessage->rxPacket.address[counter++] = rxMessage->device.read();
+		rxMessage->rxFrame->address[counter++] = rxMessage->device.read();
 
 		// go to next currentStep if 2-byte address is read.
 		if (counter == 2) {
@@ -158,28 +181,32 @@ void Message<T>::parseAddress(void *packet) {
 
 
 template <class T>
-void Message<T>::parseSize(void *packet) {
-	
-	Message<T>* rxMessage = static_cast<Message<T>*>(packet);
+void MessageBox<T>::parseSize(void *packet) {
+	MessageBox<T>* rxMessage = static_cast<MessageBox<T>*>(packet);
 
 	if (rxMessage->currentStep == parsingSize) {
-		rxMessage->rxPacket.payloadSize = rxMessage->device.read();
+		rxMessage->rxFrame->payloadSize = rxMessage->device.read();
+
+		if (rxMessage->rxFrame->payloadSize > MESSAGE_MAX_PAYLOAD_SIZE) {
+			rxMessage->rxFrame->payloadSize = MESSAGE_MAX_PAYLOAD_SIZE;
+		}
+
+		rxMessage->rxFrame->payload = new uint8_t[rxMessage->rxFrame->payloadSize];
 		rxMessage->currentStep = parsingPayload;
 	}
 }
 
 
 template <class T>
-void Message<T>::parsePayload(void *packet) {
-	
-	Message<T>* rxMessage = static_cast<Message<T>*>(packet);
+void MessageBox<T>::parsePayload(void *packet) {
+	MessageBox<T>* rxMessage = static_cast<MessageBox<T>*>(packet);
 
 	if (rxMessage->currentStep == parsingPayload) {
 		static int counter;
 
-		rxMessage->rxPacket.payload[counter++] = rxMessage->device.read();
+		rxMessage->rxFrame->payload[counter++] = rxMessage->device.read();
 
-		if (counter == rxMessage->rxPacket.payloadSize || counter == MESSAGE_MAX_PAYLOAD_SIZE) {
+		if (counter == rxMessage->rxFrame->payloadSize) {
 			counter = 0;
 			rxMessage->currentStep = parsingChecksum;
 		}
@@ -188,40 +215,122 @@ void Message<T>::parsePayload(void *packet) {
 
 
 template <class T>
-void Message<T>::parseChecksum(void *packet) {
-	
-	Message<T>* rxMessage = static_cast<Message<T>*>(packet);
+void MessageBox<T>::parseChecksum(void *packet) {
+	MessageBox<T>* rxMessage = static_cast<MessageBox<T>*>(packet);
 
 	if (rxMessage->currentStep == parsingChecksum) {
 		static int counter;
 
-		((uint8_t*)&(rxMessage->rxPacket.checksum))[counter] = rxMessage->device.read();
-		counter++;
+		((uint8_t*)&rxMessage->rxFrame->checksum)[counter++] = rxMessage->device.read();
 
 		if (counter == sizeof(crc32_t)) {
 			counter = 0;
+			rxMessage->currentStep = verifyingChecksum;
 
-			rxMessage->verifyChecksum();
-			rxMessage->currentStep = finish;
+			if (rxMessage->verifyChecksum() == 0) {
+				rxMessage->FIFO.push(rxMessage->extractMessage(rxMessage->rxFrame));
+			}
+
+			delete rxMessage->rxFrame->payload;
+			rxMessage->currentStep = parsingPreamble;
 		}
 	}
 }
 
 
 template <class T>
-int Message<T>::verifyChecksum() {
-	crc32_t ret = crc32_concat(crc32_compute(&this->rxPacket, 
-											sizeof(this->rxPacket.preamble) 
-											+ sizeof(this->rxPacket.address) 
-											+ sizeof(this->rxPacket.payloadSize)),
-								this->rxPacket.payload, this->rxPacket.payloadSize);
+int MessageBox<T>::verifyChecksum() {
+	crc32_t ret = crc32_concat(crc32_compute(this->rxFrame, 
+											sizeof(this->rxFrame->preamble) 
+											+ sizeof(this->rxFrame->address) 
+											+ sizeof(this->rxFrame->payloadSize)),
+								this->rxFrame->payload, this->rxFrame->payloadSize);
 
-	if (ret == this->rxPacket.checksum) {
+	if (ret == this->rxFrame->checksum) {
 		return 0;
 	}
 	else {
 		return -1;
 	}
+}
+
+
+template <class T>
+Message_t MessageBox<T>::extractMessage(MessageFrame_t frame) {
+	Message_t message = new Message;
+
+	message->address = frame->address[1];
+	message->payloadSize = frame->payloadSize;
+	message->payload = new uint8_t[message->payloadSize];
+
+	memcpy(message->payload, frame->payload, message->payloadSize);
+
+	return message;
+}
+
+
+template <class T>
+void MessageBox<T>::clear() {
+	Message dump;
+	dump.payload = new uint8_t[MESSAGE_MAX_PAYLOAD_SIZE];
+
+	while (!this->FIFO.empty()) {
+		pop(dump);
+	}
+
+	delete dump.payload;
+}
+
+
+template <class T>
+int MessageBox<T>::pop(Message& message) {
+	int ret = -1;
+
+	if (!this->FIFO.empty()) {
+		Message_t& data = FIFO.front();
+
+		message.address = data->address;
+		message.payloadSize = data->payloadSize;
+		memcpy(message.payload, data->payload, message.payloadSize);
+
+		/**
+		 * free memory allocated for packet's payload
+		 */
+		delete data->payload;
+		delete data;
+		FIFO.pop();
+	}
+
+	return ret;
+}
+
+
+template <class T>
+int MessageBox<T>::pop(Message_t message) {
+	int ret = -1;
+
+	if (!this->FIFO.empty()) {
+		Message_t& data = FIFO.front();
+
+		message->address = data->address;
+		message->payloadSize = data->payloadSize;
+		memcpy(message->payload, data->payload, message->payloadSize);
+
+		/**
+		 * free memory allocated for packet's payload
+		 */
+		delete data->payload;
+		delete data;
+		FIFO.pop();
+	}
+
+	return ret;
+}
+
+
+template <class T>
+bool MessageBox<T>::isAvailable() {
+	return !this->FIFO.empty();
 }
 
 } /* namespace eLinux */

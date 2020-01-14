@@ -9,6 +9,7 @@
  */
 
 
+#include <iostream>
 #include "message.h"
 #include "message.cpp"
 #include "uart.h"
@@ -18,12 +19,12 @@ using namespace BBB;
 
 namespace eLinux {
 
-template class Message<UART>;
+template class MessageBox<UART>;
 
 void ISR(void* arg) {
-	Message<UART> *msg = static_cast<Message<UART>*>(arg);
+	MessageBox<UART> *msg = static_cast<MessageBox<UART>*>(arg);
 
-	if (msg->currentStep < Message<UART>::finish) {
+	if (msg->currentStep < verifyingChecksum) {
 		msg->callback[msg->currentStep](msg);
 	}
 }
