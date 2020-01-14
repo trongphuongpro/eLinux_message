@@ -1,5 +1,5 @@
 /** 
- * @file MessageBox.cpp
+ * @file message.cpp
  * @brief Implementations for MessageBox protocol
  *  
  * This C++ library is used to create Data Link Layer for existed Physical Layers,
