@@ -23,7 +23,7 @@ template class MessageBox<UART>;
 void ISR(void* arg) {
 	MessageBox<UART> *msg = static_cast<MessageBox<UART>*>(arg);
 
-	if (msg->currentStep < verifyingChecksum) {
+	if (msg->currentStep < kVerifyingChecksum) {
 		msg->callback[msg->currentStep](msg);
 	}
 }

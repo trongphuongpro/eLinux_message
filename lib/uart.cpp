@@ -12,7 +12,6 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <termios.h>
 #include <sys/epoll.h>
 #include <pthread.h>
 #include "uart.h"
@@ -51,13 +50,13 @@ int UART::open() {
 	struct termios options;
 
 	tcgetattr(this->file, &options);
-	options.c_cflag = CS8 | CREAD | CLOCAL;
+	options.c_cflag = this->datasize | CREAD | CLOCAL;
 	options.c_iflag = IGNPAR | ICRNL;
 
 	options.c_lflag &= ~(ECHO | ECHONL | ICANON | IEXTEN | ISIG);
 
-	cfsetispeed(&options, B9600);
-	cfsetospeed(&options, B9600);
+	cfsetispeed(&options, this->baudrate);
+	cfsetospeed(&options, this->baudrate);
 
 	tcflush(this->file, TCIFLUSH);
 	tcsetattr(this->file, TCSANOW, &options);
@@ -72,7 +71,7 @@ void UART::close() {
 }
 
 
-int UART::write(uint8_t data) {
+int UART::send(uint8_t data) {
 	int ret;
 
 	if ((ret=::write(this->file, &data, 1)) < 0) {
@@ -83,7 +82,7 @@ int UART::write(uint8_t data) {
 }
 
 
-int UART::writeBuffer(const void* buffer, uint32_t len) {
+int UART::sendBuffer(const void* buffer, uint32_t len) {
 	int ret;
 
 	if ((ret=::write(this->file, buffer, len)) < 0) {
@@ -94,7 +93,7 @@ int UART::writeBuffer(const void* buffer, uint32_t len) {
 }
 
 
-int UART::read() {
+int UART::receive() {
 	uint8_t data;
 
 	if (::read(this->file, &data, 1) < 0) {
@@ -106,7 +105,7 @@ int UART::read() {
 }
 
 
-int UART::readBuffer(void* buffer, uint32_t len) {
+int UART::receiveBuffer(void* buffer, uint32_t len) {
 	int ret;
 
 	if ((ret=::read(this->file, buffer, len)) < 0) {

@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['read_33',['read',['../classBBB_1_1UART.html#aef18d2b479fcd1e3a25a31ac1e52c6d0',1,'BBB::UART']]],
-  ['readbuffer_34',['readBuffer',['../classBBB_1_1UART.html#a1215c588e9626bc2cc825b34c9a03c8c',1,'BBB::UART']]],
-  ['reverse_35',['reverse',['../crc32_8h.html#ab2d3d4e8fd97f6b58185845d08c7b6be',1,'reverse(uint8_t data):&#160;crc32.c'],['../crc32_8c.html#a9abea887f27581b0aee2daa636cbbaa8',1,'reverse(uint8_t number):&#160;crc32.c']]]
+  ['payload_29',['payload',['../structeLinux_1_1Message__t.html#abc43dae571aeee1e3aaaacca47ba3b54',1,'eLinux::Message_t::payload()'],['../structeLinux_1_1MessageFrame__t.html#a426e0f28e1ce576715664be348ea6609',1,'eLinux::MessageFrame_t::payload()']]],
+  ['payloadsize_30',['payloadSize',['../structeLinux_1_1Message__t.html#ad28df8f78d46823f5ce5c5dbf6bcb55e',1,'eLinux::Message_t::payloadSize()'],['../structeLinux_1_1MessageFrame__t.html#a9f7e782964dd9dee7262bbcff94e7f57',1,'eLinux::MessageFrame_t::payloadSize()']]],
+  ['pop_31',['pop',['../classeLinux_1_1MessageBox.html#a45ab29de8dd8750ad18a86f88779da9b',1,'eLinux::MessageBox::pop(Message_t &amp;message)'],['../classeLinux_1_1MessageBox.html#a354926249e8f386cbc3c11b50c11669d',1,'eLinux::MessageBox::pop(Message_t *message)']]],
+  ['port_32',['PORT',['../classBBB_1_1UART.html#ac5dda8663f95228e8336a769361252ed',1,'BBB::UART']]],
+  ['preamble_33',['preamble',['../structeLinux_1_1MessageFrame__t.html#aad494be068f9de59daf3839d97ad8095',1,'eLinux::MessageFrame_t']]]
 ];

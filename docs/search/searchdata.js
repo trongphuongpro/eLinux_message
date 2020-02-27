@@ -1,6 +1,6 @@
 var indexSectionsWithContent =
 {
-  0: "abceimoprstuvw~",
+  0: "abceikmoprstuw~",
   1: "mu",
   2: "be",
   3: "cmu",
@@ -8,7 +8,7 @@ var indexSectionsWithContent =
   5: "acp",
   6: "c",
   7: "ps",
-  8: "puv",
+  8: "ku",
   9: "t",
   10: "mu",
   11: "m"

@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['message_20protocol_20for_20elinux_13',['Message Protocol for eLinux',['../index.html',1,'']]],
-  ['message_14',['Message',['../structeLinux_1_1Message.html',1,'eLinux']]],
-  ['message_2ecpp_15',['message.cpp',['../message_8cpp.html',1,'']]],
-  ['message_2eh_16',['message.h',['../message_8h.html',1,'']]],
-  ['message_5fmax_5fpayload_5fsize_17',['MESSAGE_MAX_PAYLOAD_SIZE',['../message_8h.html#ab780b9319a3053847d1728617ffeeabb',1,'message.h']]],
-  ['message_5fpreamble_5fsize_18',['MESSAGE_PREAMBLE_SIZE',['../message_8h.html#a98382c952465707b612c0367a9645ea4',1,'message.h']]],
-  ['message_5fuart_2ecpp_19',['message_uart.cpp',['../message__uart_8cpp.html',1,'']]],
-  ['messagebox_20',['MessageBox',['../classeLinux_1_1MessageBox.html',1,'eLinux::MessageBox&lt; T &gt;'],['../classeLinux_1_1MessageBox.html#a6c60ddad81a0996cf35286b2a241b2a7',1,'eLinux::MessageBox::MessageBox()']]],
-  ['messageframe_21',['MessageFrame',['../structeLinux_1_1MessageFrame.html',1,'eLinux']]]
+  ['kparsingaddress_13',['kParsingAddress',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988ab6c4e04fd6676205fc2e43f9ea9cb168',1,'eLinux']]],
+  ['kparsingchecksum_14',['kParsingChecksum',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a6de759a74452441a4a52befd78b06b0f',1,'eLinux']]],
+  ['kparsingpayload_15',['kParsingPayload',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a2549b65ac9f718279ddb0dc7c353f823',1,'eLinux']]],
+  ['kparsingpreamble_16',['kParsingPreamble',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a906a67783fcc432c4c9d36891b2f498b',1,'eLinux']]],
+  ['kparsingsize_17',['kParsingSize',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a97a4d2768ceec46a0bc704a865be6014',1,'eLinux']]],
+  ['kverifyingchecksum_18',['kVerifyingChecksum',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988ac136ed9203baf90fb6e25b4494df6dd9',1,'eLinux']]]
 ];

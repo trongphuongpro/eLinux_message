@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['parsingaddress_94',['parsingAddress',['../namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94ba13160104e3e910f44860323edaa93722',1,'eLinux']]],
-  ['parsingchecksum_95',['parsingChecksum',['../namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94ba89cf4339d5ca6f9938cac84bfeca3859',1,'eLinux']]],
-  ['parsingpayload_96',['parsingPayload',['../namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94bad6c1774061f9e336f1bbd5a52f2feb84',1,'eLinux']]],
-  ['parsingpreamble_97',['parsingPreamble',['../namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94ba0eeb92911122adcfae9b4578721512a4',1,'eLinux']]],
-  ['parsingsize_98',['parsingSize',['../namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94ba3b3d5f45edf643be5380a2edab20a259',1,'eLinux']]]
+  ['kparsingaddress_94',['kParsingAddress',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988ab6c4e04fd6676205fc2e43f9ea9cb168',1,'eLinux']]],
+  ['kparsingchecksum_95',['kParsingChecksum',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a6de759a74452441a4a52befd78b06b0f',1,'eLinux']]],
+  ['kparsingpayload_96',['kParsingPayload',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a2549b65ac9f718279ddb0dc7c353f823',1,'eLinux']]],
+  ['kparsingpreamble_97',['kParsingPreamble',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a906a67783fcc432c4c9d36891b2f498b',1,'eLinux']]],
+  ['kparsingsize_98',['kParsingSize',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a97a4d2768ceec46a0bc704a865be6014',1,'eLinux']]],
+  ['kverifyingchecksum_99',['kVerifyingChecksum',['../namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988ac136ed9203baf90fb6e25b4494df6dd9',1,'eLinux']]]
 ];

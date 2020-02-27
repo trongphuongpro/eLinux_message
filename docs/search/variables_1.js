@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['checksum_86',['checksum',['../structeLinux_1_1MessageFrame.html#ac8d73cdff04648e3199098d94db2081c',1,'eLinux::MessageFrame']]]
+  ['checksum_86',['checksum',['../structeLinux_1_1MessageFrame__t.html#a3ecf74b22c26e944424c7afe25c283d3',1,'eLinux::MessageFrame_t']]]
 ];

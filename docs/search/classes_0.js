@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['message_53',['Message',['../structeLinux_1_1Message.html',1,'eLinux']]],
+  ['message_5ft_53',['Message_t',['../structeLinux_1_1Message__t.html',1,'eLinux']]],
   ['messagebox_54',['MessageBox',['../classeLinux_1_1MessageBox.html',1,'eLinux']]],
-  ['messageframe_55',['MessageFrame',['../structeLinux_1_1MessageFrame.html',1,'eLinux']]]
+  ['messageframe_5ft_55',['MessageFrame_t',['../structeLinux_1_1MessageFrame__t.html',1,'eLinux']]]
 ];

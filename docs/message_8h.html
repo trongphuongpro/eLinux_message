@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MessageProtocol: /home/trongphuong/Work/BBB/libraries/message/include/message.h File Reference</title>
+<title>MessageProtocol: /home/trongphuong/Work/eLinux/BBB/libraries/message/include/message.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,11 +86,11 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structeLinux_1_1Message.html">eLinux::Message</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct containing message.  <a href="structeLinux_1_1Message.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structeLinux_1_1Message__t.html">eLinux::Message_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct containing message.  <a href="structeLinux_1_1Message__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1MessageBox.html">eLinux::MessageBox&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">class <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> used for transmitting/receiving message packet  <a href="classeLinux_1_1MessageBox.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">class Message used for transmitting/receiving message packet  <a href="classeLinux_1_1MessageBox.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -115,27 +115,21 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a1bf117057e8742b1e093496cdd7ba560"><td class="memItemLeft" align="right" valign="top"><a id="a1bf117057e8742b1e093496cdd7ba560"></a>
 typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>eLinux::CallbackType</b>) (void *)</td></tr>
 <tr class="separator:a1bf117057e8742b1e093496cdd7ba560"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fd242aaab1936d015914b4055fdd12c"><td class="memItemLeft" align="right" valign="top"><a id="a7fd242aaab1936d015914b4055fdd12c"></a>
-typedef Message *&#160;</td><td class="memItemRight" valign="bottom"><b>eLinux::Message_t</b></td></tr>
-<tr class="separator:a7fd242aaab1936d015914b4055fdd12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae23839069b4c5a6fcb3695017ecaaa24"><td class="memItemLeft" align="right" valign="top"><a id="ae23839069b4c5a6fcb3695017ecaaa24"></a>
-typedef struct MessageFrame *&#160;</td><td class="memItemRight" valign="bottom"><b>eLinux::MessageFrame_t</b></td></tr>
-<tr class="separator:ae23839069b4c5a6fcb3695017ecaaa24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ae088e251c49bf40d49d3e27aa49cd94b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94b">eLinux::steps</a> { <br />
-&#160;&#160;<a class="el" href="namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94ba0eeb92911122adcfae9b4578721512a4">eLinux::parsingPreamble</a> =0, 
-<a class="el" href="namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94ba13160104e3e910f44860323edaa93722">eLinux::parsingAddress</a>, 
-<a class="el" href="namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94ba3b3d5f45edf643be5380a2edab20a259">eLinux::parsingSize</a>, 
-<a class="el" href="namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94bad6c1774061f9e336f1bbd5a52f2feb84">eLinux::parsingPayload</a>, 
+<tr class="memitem:a51eb0af428ed97cea36285837ffc5988"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988">eLinux::step_t</a> { <br />
+&#160;&#160;<a class="el" href="namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a906a67783fcc432c4c9d36891b2f498b">eLinux::kParsingPreamble</a> = 0, 
+<a class="el" href="namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988ab6c4e04fd6676205fc2e43f9ea9cb168">eLinux::kParsingAddress</a>, 
+<a class="el" href="namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a97a4d2768ceec46a0bc704a865be6014">eLinux::kParsingSize</a>, 
+<a class="el" href="namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a2549b65ac9f718279ddb0dc7c353f823">eLinux::kParsingPayload</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94ba89cf4339d5ca6f9938cac84bfeca3859">eLinux::parsingChecksum</a>, 
-<a class="el" href="namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94ba509025af129038518f722f8b6d3f51aa">eLinux::verifyingChecksum</a>
+&#160;&#160;<a class="el" href="namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988a6de759a74452441a4a52befd78b06b0f">eLinux::kParsingChecksum</a>, 
+<a class="el" href="namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988ac136ed9203baf90fb6e25b4494df6dd9">eLinux::kVerifyingChecksum</a>
 <br />
  }</td></tr>
-<tr class="memdesc:ae088e251c49bf40d49d3e27aa49cd94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">enum contains code for each step of transmitting/receiving procedure  <a href="namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94b">More...</a><br /></td></tr>
-<tr class="separator:ae088e251c49bf40d49d3e27aa49cd94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a51eb0af428ed97cea36285837ffc5988"><td class="mdescLeft">&#160;</td><td class="mdescRight">enum contains code for each step of transmitting/receiving procedure  <a href="namespaceeLinux.html#a51eb0af428ed97cea36285837ffc5988">More...</a><br /></td></tr>
+<tr class="separator:a51eb0af428ed97cea36285837ffc5988"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>

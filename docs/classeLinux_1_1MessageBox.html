@@ -73,7 +73,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>class <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> used for transmitting/receiving message packet  
+<p>class Message used for transmitting/receiving message packet  
  <a href="classeLinux_1_1MessageBox.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="message_8h_source.html">message.h</a>&gt;</code></p>
@@ -93,14 +93,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaa5fa3b9faa36f4e92a3ed64d232945b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1MessageBox.html#aaa5fa3b9faa36f4e92a3ed64d232945b">setPreamble</a> (uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)</td></tr>
 <tr class="memdesc:aaa5fa3b9faa36f4e92a3ed64d232945b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set valid preamble (4 bytes) for incoming packet.  <a href="classeLinux_1_1MessageBox.html#aaa5fa3b9faa36f4e92a3ed64d232945b">More...</a><br /></td></tr>
 <tr class="separator:aaa5fa3b9faa36f4e92a3ed64d232945b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18d1f1b5e07f01c344a7fee98b2d76f0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1MessageBox.html#a18d1f1b5e07f01c344a7fee98b2d76f0">pop</a> (<a class="el" href="structeLinux_1_1Message.html">Message</a> &amp;message)</td></tr>
-<tr class="memdesc:a18d1f1b5e07f01c344a7fee98b2d76f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop the oldest <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> from <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> Box.  <a href="classeLinux_1_1MessageBox.html#a18d1f1b5e07f01c344a7fee98b2d76f0">More...</a><br /></td></tr>
-<tr class="separator:a18d1f1b5e07f01c344a7fee98b2d76f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71c23d9af33e35992f320cf92ddcaf0b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1MessageBox.html#a71c23d9af33e35992f320cf92ddcaf0b">pop</a> (<a class="el" href="structeLinux_1_1Message.html">Message_t</a> message)</td></tr>
-<tr class="memdesc:a71c23d9af33e35992f320cf92ddcaf0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop the oldest <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> from <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> Box.  <a href="classeLinux_1_1MessageBox.html#a71c23d9af33e35992f320cf92ddcaf0b">More...</a><br /></td></tr>
-<tr class="separator:a71c23d9af33e35992f320cf92ddcaf0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45ab29de8dd8750ad18a86f88779da9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1MessageBox.html#a45ab29de8dd8750ad18a86f88779da9b">pop</a> (<a class="el" href="structeLinux_1_1Message__t.html">Message_t</a> &amp;message)</td></tr>
+<tr class="memdesc:a45ab29de8dd8750ad18a86f88779da9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop the oldest Message from Message Box.  <a href="classeLinux_1_1MessageBox.html#a45ab29de8dd8750ad18a86f88779da9b">More...</a><br /></td></tr>
+<tr class="separator:a45ab29de8dd8750ad18a86f88779da9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a354926249e8f386cbc3c11b50c11669d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1MessageBox.html#a354926249e8f386cbc3c11b50c11669d">pop</a> (<a class="el" href="structeLinux_1_1Message__t.html">Message_t</a> *message)</td></tr>
+<tr class="memdesc:a354926249e8f386cbc3c11b50c11669d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop the oldest Message from Message Box.  <a href="classeLinux_1_1MessageBox.html#a354926249e8f386cbc3c11b50c11669d">More...</a><br /></td></tr>
+<tr class="separator:a354926249e8f386cbc3c11b50c11669d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63fff5c12d61be95c3ccc674906e466d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeLinux_1_1MessageBox.html#a63fff5c12d61be95c3ccc674906e466d">isAvailable</a> ()</td></tr>
-<tr class="memdesc:a63fff5c12d61be95c3ccc674906e466d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if new <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> is available.  <a href="classeLinux_1_1MessageBox.html#a63fff5c12d61be95c3ccc674906e466d">More...</a><br /></td></tr>
+<tr class="memdesc:a63fff5c12d61be95c3ccc674906e466d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if new Message is available.  <a href="classeLinux_1_1MessageBox.html#a63fff5c12d61be95c3ccc674906e466d">More...</a><br /></td></tr>
 <tr class="separator:a63fff5c12d61be95c3ccc674906e466d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
@@ -113,7 +113,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ISR</b> (void *arg)</
 <div class="textblock"><h3>template&lt;class T&gt;<br />
 class eLinux::MessageBox&lt; T &gt;</h3>
 
-<p>class <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> used for transmitting/receiving message packet </p>
+<p>class Message used for transmitting/receiving message packet </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6c60ddad81a0996cf35286b2a241b2a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6c60ddad81a0996cf35286b2a241b2a7">&#9670;&nbsp;</a></span>MessageBox()</h2>
@@ -163,13 +163,13 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Check if new <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> is available. </p>
+<p>Check if new Message is available. </p>
 <dl class="section return"><dt>Returns</dt><dd>true/false. </dd></dl>
 
 </div>
 </div>
-<a id="a18d1f1b5e07f01c344a7fee98b2d76f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18d1f1b5e07f01c344a7fee98b2d76f0">&#9670;&nbsp;</a></span>pop() <span class="overload">[1/2]</span></h2>
+<a id="a45ab29de8dd8750ad18a86f88779da9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45ab29de8dd8750ad18a86f88779da9b">&#9670;&nbsp;</a></span>pop() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,27 +179,26 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="memname">int <a class="el" href="classeLinux_1_1MessageBox.html">eLinux::MessageBox</a>&lt; T &gt;::pop </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structeLinux_1_1Message.html">Message</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="structeLinux_1_1Message__t.html">Message_t</a> &amp;&#160;</td>
           <td class="paramname"><em>message</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Pop the oldest <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> from <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> Box. </p>
+<p>Pop the oldest Message from Message Box. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>pointer to <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> instance; </td></tr>
+    <tr><td class="paramname">message</td><td>pointer to Message instance; </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0: success, -1: failed. </dd></dl>
-<p>free memory allocated for packet's payload</p>
 
 </div>
 </div>
-<a id="a71c23d9af33e35992f320cf92ddcaf0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71c23d9af33e35992f320cf92ddcaf0b">&#9670;&nbsp;</a></span>pop() <span class="overload">[2/2]</span></h2>
+<a id="a354926249e8f386cbc3c11b50c11669d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a354926249e8f386cbc3c11b50c11669d">&#9670;&nbsp;</a></span>pop() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,17 +208,17 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="memname">int <a class="el" href="classeLinux_1_1MessageBox.html">eLinux::MessageBox</a>&lt; T &gt;::pop </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structeLinux_1_1Message.html">Message_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="structeLinux_1_1Message__t.html">Message_t</a> *&#160;</td>
           <td class="paramname"><em>message</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Pop the oldest <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> from <a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> Box. </p>
+<p>Pop the oldest Message from Message Box. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td><a class="el" href="structeLinux_1_1Message.html" title="Struct containing message.">Message</a> instance; </td></tr>
+    <tr><td class="paramname">message</td><td>Message instance; </td></tr>
   </table>
   </dd>
 </dl>
@@ -286,7 +285,6 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>nothing. </dd></dl>
-<p>free memore allocated for payload</p>
 <p>&lt; pause minimum 500ms between packets</p>
 
 </div>
@@ -346,8 +344,8 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/trongphuong/Work/BBB/libraries/message/include/<a class="el" href="message_8h_source.html">message.h</a></li>
-<li>/home/trongphuong/Work/BBB/libraries/message/src/<a class="el" href="message_8cpp.html">message.cpp</a></li>
+<li>/home/trongphuong/Work/eLinux/BBB/libraries/message/include/<a class="el" href="message_8h_source.html">message.h</a></li>
+<li>/home/trongphuong/Work/eLinux/BBB/libraries/message/src/<a class="el" href="message_8cpp.html">message.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

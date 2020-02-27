@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['address_85',['address',['../structeLinux_1_1Message.html#a143d81121f5815d278552faaf96f4970',1,'eLinux::Message::address()'],['../structeLinux_1_1MessageFrame.html#a5a53259b8cd6dc6a804861113022862c',1,'eLinux::MessageFrame::address()']]]
+  ['address_85',['address',['../structeLinux_1_1Message__t.html#ab64ec0082e470a01b6230b53cbc9168e',1,'eLinux::Message_t::address()'],['../structeLinux_1_1MessageFrame__t.html#ac43d0fa8d071039459b3732fd5230d13',1,'eLinux::MessageFrame_t::address()']]]
 ];

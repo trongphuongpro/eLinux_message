@@ -1,7 +1,7 @@
 var searchData=
 [
   ['callbacktype_2',['CallbackType',['../namespaceBBB.html#a32bca02b46577bc237c36621e5688c0a',1,'BBB']]],
-  ['checksum_3',['checksum',['../structeLinux_1_1MessageFrame.html#ac8d73cdff04648e3199098d94db2081c',1,'eLinux::MessageFrame']]],
+  ['checksum_3',['checksum',['../structeLinux_1_1MessageFrame__t.html#a3ecf74b22c26e944424c7afe25c283d3',1,'eLinux::MessageFrame_t']]],
   ['crc32_2ec_4',['crc32.c',['../crc32_8c.html',1,'']]],
   ['crc32_2eh_5',['crc32.h',['../crc32_8h.html',1,'']]],
   ['crc32_5fcheck_6',['crc32_check',['../crc32_8h.html#a163e663f1fd09938b3f16021d8917372',1,'crc32_check(const void *data, uint32_t len):&#160;crc32.c'],['../crc32_8c.html#a163e663f1fd09938b3f16021d8917372',1,'crc32_check(const void *data, uint32_t len):&#160;crc32.c']]],

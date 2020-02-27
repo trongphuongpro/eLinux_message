@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['send_36',['send',['../classeLinux_1_1MessageBox.html#ae04e7427437c3fef6a9a4a89aac1f668',1,'eLinux::MessageBox']]],
-  ['setpreamble_37',['setPreamble',['../classeLinux_1_1MessageBox.html#aaa5fa3b9faa36f4e92a3ed64d232945b',1,'eLinux::MessageBox']]],
-  ['steps_38',['steps',['../namespaceeLinux.html#ae088e251c49bf40d49d3e27aa49cd94b',1,'eLinux']]]
+  ['read_34',['read',['../classBBB_1_1UART.html#aa00786e1215d26f0e4a06dd6ec19fca5',1,'BBB::UART']]],
+  ['readbuffer_35',['readBuffer',['../classBBB_1_1UART.html#ab563f369a2fd8fe76b67da6ba9ed5a24',1,'BBB::UART']]],
+  ['reverse_36',['reverse',['../crc32_8h.html#ab2d3d4e8fd97f6b58185845d08c7b6be',1,'reverse(uint8_t data):&#160;crc32.c'],['../crc32_8c.html#a9abea887f27581b0aee2daa636cbbaa8',1,'reverse(uint8_t number):&#160;crc32.c']]]
 ];

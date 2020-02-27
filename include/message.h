@@ -39,29 +39,31 @@ typedef void (*CallbackType)(void*);
 
 
 /** 
- * @brief enum contains code for each step of transmitting/receiving procedure
- */  
-enum steps {parsingPreamble=0, /**< step 1: parse the preamble */
-			parsingAddress, /**< step 2: receive destination and source address */
-			parsingSize, /**< step 3: receive payload size */
-			parsingPayload, /**< step 4: receive payload */
-			parsingChecksum, /**< step 5: receive CRC-32 checksum */
-			verifyingChecksum /**< step 6: finish receiving prodedure */
-		}; /**< @brief variable contains current state of procedure */
+ * @brief Struct containing message
+ */
+struct Message_t {
+	uint8_t address; /**< @brief source address: 1 byte */
+	uint8_t payloadSize; /**< @brief size of payload  */
+	uint8_t payload[MESSAGE_MAX_PAYLOAD_SIZE]; /**< @brief array contains payload */
+} __attribute__((packed));
 
 
 /** 
- * @brief Struct containing message
+ * @brief Struct containing message frame
  */
-struct Message {
-	uint8_t address; /**< @brief source address: 1 byte */
-	uint8_t payloadSize; /**< @brief size of payload  */
-	uint8_t *payload; /**< @brief array contains payload */
-} __attribute__((packed));
+struct MessageFrame_t;
 
-typedef Message* Message_t;
 
-typedef struct MessageFrame* MessageFrame_t;
+/** 
+ * @brief enum contains code for each step of transmitting/receiving procedure
+ */  
+enum step_t {kParsingPreamble = 0, /**< step 1: parse the preamble */
+			kParsingAddress, /**< step 2: receive destination and source address */
+			kParsingSize, /**< step 3: receive payload size */
+			kParsingPayload, /**< step 4: receive payload */
+			kParsingChecksum, /**< step 5: receive CRC-32 checksum */
+			kVerifyingChecksum /**< step 6: finish receiving prodedure */
+		}; /**< @brief variable contains current state of procedure */
 
 
 /**
@@ -120,7 +122,7 @@ public:
 	 * @param message pointer to Message instance;
 	 * @return 0: success, -1: failed.
 	 */
-	int pop(Message& message);
+	int pop(Message_t &message);
 
 
 	/**
@@ -128,7 +130,7 @@ public:
 	 * @param message Message instance;
 	 * @return 0: success, -1: failed.
 	 */
-	int pop(Message_t message);
+	int pop(Message_t *message);
 
 
 	/**
@@ -158,7 +160,7 @@ private:
 	 * @param rxFrame received frame.
 	 * @return pointer to new Message.
 	 */
-	Message_t extractMessage(MessageFrame_t rxFrame);
+	Message_t extractMessage(MessageFrame_t *rxFrame);
 
 
 	/**
@@ -175,12 +177,12 @@ private:
 
 	T& device; /**< Physical layer device */
 
-	MessageFrame_t rxFrame; /**< @brief frame for incoming message */
-	MessageFrame_t txFrame; /**< @brief frame for outgoing message */
+	MessageFrame_t *rxFrame; /**< @brief frame for incoming message */
+	MessageFrame_t *txFrame; /**< @brief frame for outgoing message */
 
 	std::queue<Message_t> FIFO; /**< FIFO buffer containing Messages */
 
-	steps currentStep;
+	step_t currentStep;
 
 	uint8_t validPreamble[MESSAGE_PREAMBLE_SIZE] = {0xAA, 0xBB, 0xCC, 0xDD};
 
