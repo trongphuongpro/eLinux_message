@@ -17,8 +17,8 @@ int main() {
 	MessageBox<UART> msg(bus);
 	Message_t packet;
 
-	const char* s[4] = {"Beaglebone Black", "trongphuongpro",
-						"codelungtung", "uart testing"};
+	// const char* s[4] = {"Beaglebone Black", "trongphuongpro",
+	// 					"codelungtung", "uart testing"};
 
 	puts("Let's go!");
 
@@ -26,21 +26,22 @@ int main() {
 		if (msg.isAvailable()) {
 			msg.pop(packet);
 
-			printf("\n[Address] %d", packet.address);
+			printf("[Address] %d\n", packet.address);
 
-			printf("\n[Size] %d", packet.payloadSize);
+			printf("[Size] %d\n", packet.payloadSize);
 		
-			printf("\n[Payload] ");
+			printf("[Payload] ");
 			for (int i = 0; i < packet.payloadSize; i++) {
-				printf("%c", packet.payload[i]);
+				printf("%02X", packet.payload[i]);
 			}
+			printf("\n----------------------\n");
 		}
 
-		for (uint8_t i = 0; i < 4; i++) {
-			printf("\nSend %d bytes", strlen(s[i]));
-			msg.send(preamble_1, i, i, s[i], strlen(s[i]));
-		}
-		sleep(1); /**< very important */
+		// for (uint8_t i = 0; i < 4; i++) {
+		// 	printf("\nSend %d bytes", strlen(s[i]));
+		// 	msg.send(preamble_1, i, i, s[i], strlen(s[i]));
+		// }
+		usleep(50000); /**< very important */
 	}
 }
 

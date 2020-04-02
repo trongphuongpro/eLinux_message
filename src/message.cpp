@@ -294,9 +294,7 @@ int MessageBox<T>::pop(Message_t *message) {
 		message->payloadSize = data.payloadSize;
 		memcpy(message->payload, data.payload, message->payloadSize);
 
-		/**
-		 * free memory allocated for packet's payload
-		 */
+
 		FIFO.pop();
 	}
 
