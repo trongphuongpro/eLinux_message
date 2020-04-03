@@ -64,7 +64,7 @@ public:
 	 * @param data one byte data.
 	 * @return 0: OK, -1: Error.
 	 */
-	virtual int write(uint8_t data);
+	virtual int send(uint8_t data);
 
 
 	/**
@@ -73,14 +73,14 @@ public:
  	 * @param len the length of data in byte.
  	 * @return 0: OK, -1: Error.
  	 */
-	virtual int writeBuffer(const void* data, uint32_t len);
+	virtual int sendBuffer(const void* data, uint32_t len);
 
 
 	/** 
 	 * @brief Get one byte from UART bus
 	 * @return one byte.
 	 */
-	virtual int read();
+	virtual int receive();
 
 
 	/** 
@@ -89,7 +89,7 @@ public:
 	 * @parem the number of bytes will be received.
 	 * @return 0: OK, -1: Error.
 	 */	
-	virtual int readBuffer(void* data, uint32_t len);
+	virtual int receiveBuffer(void* data, uint32_t len);
 
 
 	/**

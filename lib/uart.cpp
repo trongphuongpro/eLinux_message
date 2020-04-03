@@ -12,6 +12,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <termios.h>
 #include <sys/epoll.h>
 #include <pthread.h>
 #include "uart.h"

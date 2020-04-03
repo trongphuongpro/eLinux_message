@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['write_81',['write',['../classBBB_1_1UART.html#a91e0e4ebd0a62b07d64258a77c69405d',1,'BBB::UART']]],
-  ['writebuffer_82',['writeBuffer',['../classBBB_1_1UART.html#ac139216de5e4c774641962a4805fa68b',1,'BBB::UART']]]
+  ['_7emessagebox_81',['~MessageBox',['../classeLinux_1_1MessageBox.html#a89fe9386bdb0d527cba63bc917977cb8',1,'eLinux::MessageBox']]],
+  ['_7euart_82',['~UART',['../classBBB_1_1UART.html#aadddcbbe3d4b65d13c2e92cce5a04c32',1,'BBB::UART']]]
 ];
