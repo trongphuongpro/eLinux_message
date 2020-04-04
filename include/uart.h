@@ -9,6 +9,7 @@
 #define __UART__
 
 #include <string>
+#include <termios.h>
 
 /**
  * @brief Path to UART character files
@@ -50,7 +51,7 @@ public:
 	 * @param baudrate UART baudrate;
 	 * @param bit data size: 5,6,7 or 8 bit
 	 */
-	UART(PORT bus, int baudrate, uint8_t bit=8);
+	UART(PORT bus, int baudrate=B9600, uint8_t bit=CS8);
 
 
 	/**
@@ -64,7 +65,7 @@ public:
 	 * @param data one byte data.
 	 * @return 0: OK, -1: Error.
 	 */
-	virtual int write(uint8_t data);
+	virtual int send(uint8_t data);
 
 
 	/**
@@ -73,14 +74,14 @@ public:
  	 * @param len the length of data in byte.
  	 * @return 0: OK, -1: Error.
  	 */
-	virtual int writeBuffer(const void* data, uint32_t len);
+	virtual int sendBuffer(const void* data, uint32_t len);
 
 
 	/** 
 	 * @brief Get one byte from UART bus
 	 * @return one byte.
 	 */
-	virtual int read();
+	virtual int receive();
 
 
 	/** 
@@ -89,7 +90,7 @@ public:
 	 * @parem the number of bytes will be received.
 	 * @return 0: OK, -1: Error.
 	 */	
-	virtual int readBuffer(void* data, uint32_t len);
+	virtual int receiveBuffer(void* data, uint32_t len);
 
 
 	/**

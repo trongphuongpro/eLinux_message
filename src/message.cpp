@@ -67,11 +67,11 @@ void MessageBox<T>::send(const void* preamble,
 {
 	createFrame(preamble, destination, source, payload, len);
 
-	this->device.writeBuffer(this->txFrame->preamble, MESSAGE_PREAMBLE_SIZE);
-	this->device.writeBuffer(this->txFrame->address, 2);
-	this->device.write(this->txFrame->payloadSize);
-	this->device.writeBuffer(this->txFrame->payload, this->txFrame->payloadSize);
-	this->device.writeBuffer(&(this->txFrame->checksum), sizeof(crc32_t));
+	this->device.sendBuffer(this->txFrame->preamble, MESSAGE_PREAMBLE_SIZE);
+	this->device.sendBuffer(this->txFrame->address, 2);
+	this->device.send(this->txFrame->payloadSize);
+	this->device.sendBuffer(this->txFrame->payload, this->txFrame->payloadSize);
+	this->device.sendBuffer(&(this->txFrame->checksum), sizeof(crc32_t));
 
 	usleep(500000); /**< pause minimum 500ms between packets */
 }
@@ -93,8 +93,8 @@ void MessageBox<T>::createFrame(const void* _preamble,
 							const void* _payload, 
 							uint8_t len) 
 {
-	uint8_t* preamble = (uint8_t*)_preamble;
-	uint8_t* payload = (uint8_t*)_payload;
+	const uint8_t* preamble = (const uint8_t*)_preamble;
+	const uint8_t* payload = (const uint8_t*)_payload;
 
 	// PREAMBLE
 	for (uint8_t i = 0; i < MESSAGE_PREAMBLE_SIZE; i++) {
@@ -133,7 +133,7 @@ void MessageBox<T>::parsePreamble(void *packet) {
 	if (rxMessage->currentStep == kParsingPreamble) {
 		static int counter;
 
-		rxMessage->rxFrame->preamble[counter] = rxMessage->device.read();
+		rxMessage->rxFrame->preamble[counter] = rxMessage->device.receive();
 
 		if (rxMessage->rxFrame->preamble[counter] == rxMessage->validPreamble[counter]) {
 			counter++;
@@ -158,7 +158,7 @@ void MessageBox<T>::parseAddress(void *packet) {
 	if (rxMessage->currentStep == kParsingAddress) {
 		static int counter;
 
-		rxMessage->rxFrame->address[counter++] = rxMessage->device.read();
+		rxMessage->rxFrame->address[counter++] = rxMessage->device.receive();
 
 		// go to next currentStep if 2-byte address is read.
 		if (counter == 2) {
@@ -174,7 +174,7 @@ void MessageBox<T>::parseSize(void *packet) {
 	MessageBox<T>* rxMessage = static_cast<MessageBox<T>*>(packet);
 
 	if (rxMessage->currentStep == kParsingSize) {
-		rxMessage->rxFrame->payloadSize = rxMessage->device.read();
+		rxMessage->rxFrame->payloadSize = rxMessage->device.receive();
 
 		if (rxMessage->rxFrame->payloadSize > MESSAGE_MAX_PAYLOAD_SIZE) {
 			rxMessage->rxFrame->payloadSize = MESSAGE_MAX_PAYLOAD_SIZE;
@@ -192,7 +192,7 @@ void MessageBox<T>::parsePayload(void *packet) {
 	if (rxMessage->currentStep == kParsingPayload) {
 		static int counter;
 
-		rxMessage->rxFrame->payload[counter++] = rxMessage->device.read();
+		rxMessage->rxFrame->payload[counter++] = rxMessage->device.receive();
 
 		if (counter == rxMessage->rxFrame->payloadSize) {
 			counter = 0;
@@ -209,7 +209,7 @@ void MessageBox<T>::parseChecksum(void *packet) {
 	if (rxMessage->currentStep == kParsingChecksum) {
 		static int counter;
 
-		((uint8_t*)&rxMessage->rxFrame->checksum)[counter++] = rxMessage->device.read();
+		((uint8_t*)&rxMessage->rxFrame->checksum)[counter++] = rxMessage->device.receive();
 
 		if (counter == sizeof(crc32_t)) {
 			counter = 0;
