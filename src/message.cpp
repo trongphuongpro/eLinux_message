@@ -93,8 +93,8 @@ void MessageBox<T>::createFrame(const void* _preamble,
 							const void* _payload, 
 							uint8_t len) 
 {
-	uint8_t* preamble = (uint8_t*)_preamble;
-	uint8_t* payload = (uint8_t*)_payload;
+	const uint8_t* preamble = (const uint8_t*)_preamble;
+	const uint8_t* payload = (const uint8_t*)_payload;
 
 	// PREAMBLE
 	for (uint8_t i = 0; i < MESSAGE_PREAMBLE_SIZE; i++) {

@@ -9,6 +9,7 @@
 #define __UART__
 
 #include <string>
+#include <termios.h>
 
 /**
  * @brief Path to UART character files
@@ -50,7 +51,7 @@ public:
 	 * @param baudrate UART baudrate;
 	 * @param bit data size: 5,6,7 or 8 bit
 	 */
-	UART(PORT bus, int baudrate, uint8_t bit=8);
+	UART(PORT bus, int baudrate=B9600, uint8_t bit=CS8);
 
 
 	/**
